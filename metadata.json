@@ -1,0 +1,5 @@
+{
+  "name": "Kirschbaum SHK Düsseldorf",
+  "description": "Exklusive Badplanung, Heizungstechnik und Klimasysteme in Düsseldorf. Ihr Meisterbetrieb für höchste handwerkliche Präzision.",
+  "requestFramePermissions": ["geolocation"]
+}
