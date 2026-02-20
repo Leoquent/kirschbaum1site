@@ -88,7 +88,7 @@ const Navbar = ({ heroScrollProgress }: { heroScrollProgress: any }) => {
           {/* Logo Placeholder - Using the description from the image */}
           <div className="flex items-center gap-4">
             <motion.img
-              src="/src/Kirschbaum-Logo_transparent.png"
+              src="/Kirschbaum-Logo_transparent.png"
               alt="Kirschbaum Logo"
               style={{ filter: useTransform(heroScrollProgress, [0, 0.15], ["brightness(0) invert(1)", "brightness(1) invert(0)"]) }}
               className="h-16 w-auto"
@@ -365,7 +365,7 @@ const Home = () => {
           className="absolute inset-0 z-0"
         >
           <img
-            src="/src/heroimage.png"
+            src="/heroimage.png"
             alt="Handwerker bei der Arbeit - Meisterbetrieb Kirschbaum Düsseldorf"
             className="w-full h-full object-cover opacity-80"
             loading="eager"
@@ -533,19 +533,19 @@ const Home = () => {
                 title: "Bad & Sanitär",
                 desc: "Wir verwandeln Ihr Badezimmer in eine Wellness-Oase. Von der 3D-Planung bis zur schlüsselfertigen Übergabe – zum Festpreis.",
                 icon: <Droplets className="w-8 h-8" />,
-                img: "/src/badsanitaer.png"
+                img: "/badsanitaer.png"
               },
               {
                 title: "Heizung & Energie",
                 desc: "Zukunftssichere Heizsysteme: Wärmepumpen, Solarthermie oder Brennwerttechnik. Inklusive Förderberatung – wir kümmern uns um Ihre Fördermittel.",
                 icon: <Flame className="w-8 h-8" />,
-                img: "/src/heizungenergie.png"
+                img: "/heizungenergie.png"
               },
               {
                 title: "Klima & Lüftung",
                 desc: "Perfektes Raumklima zu jeder Jahreszeit. Beratung, Montage und Wartung aus einer Hand – für Ihr Zuhause und Gewerbe.",
                 icon: <Wind className="w-8 h-8" />,
-                img: "/src/klimalueftung.png"
+                img: "/klimalueftung.png"
               }
             ].map((service, i) => (
               <motion.div
@@ -739,7 +739,7 @@ const Home = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/src/Kirschbaum-Logo_transparent.png"
+                src="/Kirschbaum-Logo_transparent.png"
                 alt="Kirschbaum Logo"
                 className="h-12 w-auto"
               />
