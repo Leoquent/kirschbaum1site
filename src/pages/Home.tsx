@@ -55,15 +55,19 @@ export const Home = () => {
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         className="space-y-8"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium">
-                            <ShieldCheck className="w-4 h-4 text-accent" />
-                            <span>Seit 1890 · Meisterbetrieb in 5. Generation</span>
+                        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl md:rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium">
+                            <ShieldCheck className="w-4 h-4 text-accent shrink-0" />
+                            <div className="flex flex-col md:flex-row items-center gap-0 md:gap-2 leading-tight md:leading-normal">
+                                <span>Seit 1890</span>
+                                <span className="hidden md:inline">·</span>
+                                <span>Meisterbetrieb in 5. Generation</span>
+                            </div>
                         </div>
 
-                        <h1 className="text-5xl md:text-8xl font-display font-bold text-white tracking-tight leading-[0.95]">
-                            <span className="block md:inline">Ihr Bad. </span>
-                            <span className="block md:inline">Ihr Zuhause. </span><br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">Unser Handwerk.</span>
+                        <h1 className="text-5xl md:text-8xl font-display font-bold text-white tracking-tight leading-[0.9] md:leading-[0.95]">
+                            <span className="block">Ihr Bad.</span>
+                            <span className="block">Ihr Zuhause.</span>
+                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">Unser Handwerk.</span>
                         </h1>
 
                         <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto font-light tracking-wide">

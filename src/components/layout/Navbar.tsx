@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useTransform, MotionValue } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
 
 const NAV_LINKS = [
     { name: 'Leistungen', href: '/leistungen' },
@@ -39,9 +39,10 @@ const StaticNavbar = () => {
                         ))}
                     </div>
 
-                    <Link to="/kontakt">
-                        <button className="bg-accent text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-semibold hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20 cursor-pointer whitespace-nowrap">
-                            Kontakt aufnehmen
+                    <Link to="/kontakt" className="shrink-0">
+                        <button className="bg-accent text-white p-2 md:px-6 md:py-2.5 rounded-lg text-xs md:text-sm font-semibold hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20 cursor-pointer whitespace-nowrap">
+                            <span className="hidden md:inline">Kontakt aufnehmen</span>
+                            <Mail className="w-5 h-5 md:hidden" />
                         </button>
                     </Link>
 
@@ -119,9 +120,10 @@ const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue
                         ))}
                     </div>
 
-                    <Link to="/kontakt">
-                        <button className="bg-accent text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-semibold hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20 cursor-pointer whitespace-nowrap">
-                            Kontakt aufnehmen
+                    <Link to="/kontakt" className="shrink-0">
+                        <button className="bg-accent text-white p-2 md:px-6 md:py-2.5 rounded-lg text-xs md:text-sm font-semibold hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20 cursor-pointer whitespace-nowrap">
+                            <span className="hidden md:inline">Kontakt aufnehmen</span>
+                            <Mail className="w-5 h-5 md:hidden" />
                         </button>
                     </Link>
 
