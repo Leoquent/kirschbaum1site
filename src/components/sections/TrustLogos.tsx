@@ -4,21 +4,21 @@ import { motion } from 'motion/react';
 type Partner = { name: string; logo: string };
 
 const PARTNERS: Partner[] = [
-    { name: 'Viessmann', logo: '/logos/partners/Viessmann.png' },
-    { name: 'Hansa', logo: '/logos/partners/Hansa.png' },
-    { name: 'Hansgrohe', logo: '/logos/partners/Hansgrohe.png' },
-    { name: 'Geberit', logo: '/logos/partners/Geberit.png' },
-    { name: 'Kermi', logo: '/logos/partners/Kermi.png' },
-    { name: 'Keuco', logo: '/logos/partners/Keuco.png' },
-    { name: 'Grohe', logo: '/logos/partners/Grohe.png' },
-    { name: 'SHK Innung', logo: '/logos/partners/SHK_Innung.png' },
-    { name: 'Badpunkt', logo: '/logos/partners/Badpunkt.png' },
-    { name: 'Lumina', logo: '/logos/partners/Lumina.png' },
-    { name: 'Mitsubishi', logo: '/logos/partners/Mitsubishi.png' },
-    { name: 'Tago', logo: '/logos/partners/Tago.png' },
-    { name: 'Vaillant', logo: '/logos/partners/Vaillant.png' },
-    { name: 'Weisshaupt', logo: '/logos/partners/Weisshaupt.png' },
-    { name: 'Wilo', logo: '/logos/partners/Wilo.png' },
+    { name: 'Viessmann', logo: '/logos/partners/viessmann.png' },
+    { name: 'Hansa', logo: '/logos/partners/hansa.png' },
+    { name: 'Hansgrohe', logo: '/logos/partners/hansgrohe.png' },
+    { name: 'Geberit', logo: '/logos/partners/geberit.png' },
+    { name: 'Kermi', logo: '/logos/partners/kermi.png' },
+    { name: 'Keuco', logo: '/logos/partners/keuco.png' },
+    { name: 'Grohe', logo: '/logos/partners/grohe.png' },
+    { name: 'SHK Innung', logo: '/logos/partners/shk_innung.png' },
+    { name: 'Badpunkt', logo: '/logos/partners/badpunkt.png' },
+    { name: 'Lumina', logo: '/logos/partners/lumina.png' },
+    { name: 'Mitsubishi', logo: '/logos/partners/mitsubishi.png' },
+    { name: 'Tago', logo: '/logos/partners/tago.png' },
+    { name: 'Vaillant', logo: '/logos/partners/vaillant.png' },
+    { name: 'Weisshaupt', logo: '/logos/partners/weisshaupt.png' },
+    { name: 'Wilo', logo: '/logos/partners/wilo.png' },
 ];
 
 const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];
