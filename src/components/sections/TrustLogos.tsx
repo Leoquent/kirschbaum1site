@@ -15,7 +15,7 @@ const PARTNERS: Partner[] = [
     { name: 'Badpunkt', logo: '/logos/partners/badpunkt.png' },
     { name: 'Lumina', logo: '/logos/partners/lumina.png' },
     { name: 'Mitsubishi', logo: '/logos/partners/mitsubishi.png' },
-    { name: 'Tago', logo: '/logos/partners/tago.png' },
+    { name: 'Tago', logo: '/logos/partners/tago.svg' },
     { name: 'Vaillant', logo: '/logos/partners/vaillant.png' },
     { name: 'Weisshaupt', logo: '/logos/partners/weisshaupt.png' },
     { name: 'Wilo', logo: '/logos/partners/wilo.png' },
