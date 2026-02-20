@@ -1,17 +1,76 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'CenturyGothic';
+  src: url('./centurygothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CenturyGothic';
+  src: url('./centurygothic_bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SansSerifFLF';
+  src: url('./SansSerifFLF.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SansSerifFLF';
+  src: url('./SansSerifFLF-Demibold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-primary: #2B53A0;
   --color-accent: #337AB7;
-  --color-text-primary: #666666;
-  
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", sans-serif;
+  --color-text-primary: #333333;
+  --color-background: #FFFFFF;
+
+  --font-sans: "CenturyGothic", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "SansSerifFLF", sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Improved font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
-    @apply bg-white text-text-primary antialiased;
+    @apply bg-background text-text-primary antialiased;
+  }
+
+  /* Focus visible accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -21,6 +80,7 @@
     filter: blur(20px);
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     filter: blur(0);
@@ -31,4 +91,3 @@
 .animate-blur-up {
   animation: blur-up 0.75s ease-out forwards;
 }
-
