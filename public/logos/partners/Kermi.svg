@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg20"
+   version="1.2"
+   viewBox="0 0 69.0265 34.0158"
+   height="34.0158pt"
+   width="69.0265pt">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5">
+    <clipPath
+       id="clip1">
+      <path
+         id="path2"
+         d="M 63 15 L 68.066406 15 L 68.066406 30 L 63 30 Z M 63 15 " />
+    </clipPath>
+  </defs>
+  <g
+     id="surface1">
+    <path
+       id="path7"
+       d="M 27.960938 12.179688 C 35.609375 12.183594 43.570313 10.894531 43.570313 18.335938 C 43.570313 20.144531 42.179688 22.144531 40.058594 23.460938 L 44.019531 29.898438 L 39.007813 29.890625 L 35.0625 23.71875 L 32.886719 23.71875 L 32.886719 29.898438 L 27.960938 29.898438 L 27.960938 12.179688 M 32.894531 16.171875 L 32.894531 19.984375 C 32.894531 19.984375 38.636719 20.765625 38.570313 18.082031 C 38.5 15.363281 32.894531 16.171875 32.894531 16.171875 "
+       style=" stroke:none;fill-rule:evenodd;fill:rgb(13.729858%,12.159729%,12.548828%);fill-opacity:1;" />
+    <path
+       id="path9"
+       d="M 0 14.464844 C 16.1875 5.257813 41.941406 -0.316406 67.703125 13.503906 C 67.703125 13.503906 27.191406 1.554688 7.679688 19.710938 L 14.507813 29.894531 L 8.960938 29.894531 L 5.003906 24.75 L 5.003906 29.894531 L 0.0078125 29.894531 L 0 14.464844 "
+       style=" stroke:none;fill-rule:nonzero;fill:rgb(13.729858%,12.159729%,12.548828%);fill-opacity:1;" />
+    <path
+       id="path11"
+       d="M 14.855469 15.375 L 26.410156 15.375 L 26.410156 18.554688 L 19.933594 18.554688 L 19.933594 21.167969 L 26.410156 21.167969 L 26.410156 24.308594 L 19.933594 24.308594 L 19.933594 26.917969 L 26.410156 26.921875 L 26.414063 29.894531 L 14.855469 29.894531 L 14.855469 15.375 "
+       style=" stroke:none;fill-rule:nonzero;fill:rgb(13.729858%,12.159729%,12.548828%);fill-opacity:1;" />
+    <path
+       id="path13"
+       d="M 45.074219 15.320313 L 49.921875 15.320313 L 53.320313 20.648438 L 56.714844 15.320313 L 61.566406 15.320313 L 61.566406 29.894531 L 56.714844 29.894531 L 56.714844 23.316406 L 53.363281 27.894531 L 49.921875 23.503906 L 49.921875 29.894531 L 45.066406 29.894531 L 45.074219 15.320313 "
+       style=" stroke:none;fill-rule:nonzero;fill:rgb(13.729858%,12.159729%,12.548828%);fill-opacity:1;" />
+    <g
+       id="g17"
+       clip-rule="nonzero"
+       clip-path="url(#clip1)">
+      <path
+         id="path15"
+         d="M 68.066406 15.332031 L 68.066406 29.894531 L 63.308594 29.894531 L 63.3125 15.332031 L 68.066406 15.332031 "
+         style=" stroke:none;fill-rule:nonzero;fill:rgb(13.729858%,12.159729%,12.548828%);fill-opacity:1;" />
+    </g>
+  </g>
+</svg>
