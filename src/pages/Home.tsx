@@ -292,10 +292,23 @@ export const Home = () => {
             {/* Google Reviews Section */}
             <section className="py-24 bg-white border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center space-y-4 mb-20">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
-                            <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                            Google Bewertungen
+                    <div className="text-center space-y-6 mb-20">
+                        <div className="inline-flex flex-col items-center gap-3">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
+                                <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                                Google Bewertungen
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="flex gap-1">
+                                    {[...Array(5)].map((_, j) => (
+                                        <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                                    ))}
+                                </div>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-3xl font-bold text-primary">4.7</span>
+                                    <span className="text-primary/40 text-sm font-medium">/ 5.0</span>
+                                </div>
+                            </div>
                         </div>
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
                     </div>
