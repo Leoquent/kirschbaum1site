@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
 import { AnimatedNumber } from '@/components/utils/AnimatedNumber';
-import { LOCATION, getAssetPath } from '@/constants';
+import { COMPANY_NAME, LOCATION, getAssetPath } from '@/constants';
 import { History, Users, Heart, Target } from 'lucide-react';
 
 export const About = () => {
@@ -17,7 +17,7 @@ export const About = () => {
                     >
                         <h1 className="text-5xl md:text-7xl font-display font-bold text-primary tracking-tight">Tradition trifft Moderne</h1>
                         <p className="text-xl text-primary/60 max-w-2xl mx-auto">
-                            Seit 1890 ist der Name Kirschbaum in {LOCATION} ein Synonym für erstklassiges Handwerk und zuverlässigen Service.
+                            Seit 1890 ist der Name {COMPANY_NAME} in {LOCATION} ein Synonym für erstklassiges Handwerk und zuverlässigen Service.
                         </p>
                     </motion.div>
 
@@ -48,7 +48,7 @@ export const About = () => {
                         </div>
                         <div className="relative">
                             <div className="aspect-[4/5] rounded-3xl bg-gray-100 overflow-hidden shadow-2xl">
-                                <img src={getAssetPath("/heroimage.png")} alt="Kirschbaum Historie" className="w-full h-full object-cover grayscale" />
+                                <img src={getAssetPath("/heroimage.png")} alt={`${COMPANY_NAME} Historie`} className="w-full h-full object-cover grayscale" />
                             </div>
                             <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-2xl shadow-xl hidden md:block border border-gray-100 max-w-[280px]">
                                 <p className="text-primary font-medium italic">

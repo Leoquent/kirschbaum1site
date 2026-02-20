@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useTransform, MotionValue } from 'motion/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Mail } from 'lucide-react';
-import { getAssetPath } from '@/constants';
+import { COMPANY_NAME, getAssetPath } from '@/constants';
 
 const NAV_LINKS = [
     { name: 'Leistungen', href: '/leistungen' },
@@ -14,8 +14,20 @@ const NAV_LINKS = [
 // =============================================
 // STATIC NAVBAR – used on all pages except Home
 // =============================================
+const useLogoClick = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    return (e: React.MouseEvent) => {
+        if (location.pathname === '/') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+};
+
 const StaticNavbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const handleLogoClick = useLogoClick();
 
     return (
         <nav
@@ -23,10 +35,10 @@ const StaticNavbar = () => {
             aria-label="Hauptnavigation"
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-4 shrink-0">
+                <Link to="/" className="flex items-center gap-4 shrink-0" onClick={handleLogoClick}>
                     <img
                         src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
-                        alt="Kirschbaum Logo"
+                        alt={`${COMPANY_NAME} Logo`}
                         className="h-12 md:h-16 w-auto object-contain"
                     />
                 </Link>
@@ -87,6 +99,7 @@ const StaticNavbar = () => {
 // ===================================================
 const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue<number> }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const handleLogoClick = useLogoClick();
 
     const backgroundColor = useTransform(heroScrollProgress, [0, 0.2], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"]);
     const backdropBlur = useTransform(heroScrollProgress, [0, 0.2], ["blur(0px)", "blur(16px)"]);
@@ -101,10 +114,10 @@ const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue
             aria-label="Hauptnavigation"
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-4 shrink-0">
+                <Link to="/" className="flex items-center gap-4 shrink-0" onClick={handleLogoClick}>
                     <motion.img
                         src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
-                        alt="Kirschbaum Logo"
+                        alt={`${COMPANY_NAME} Logo`}
                         style={{ filter: logoFilter }}
                         className="h-12 md:h-16 w-auto object-contain"
                     />

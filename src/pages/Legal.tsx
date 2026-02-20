@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { COMPANY_FULL_NAME, CONTACT, LEGAL } from '@/constants';
 
 const LegalLayout = ({ title, children }: { title: string, children: React.ReactNode }) => (
     <Layout isStatic={true}>
@@ -20,22 +21,22 @@ export const Impressum = () => (
             <div className="space-y-2">
                 <h2 className="text-xl font-bold text-primary">Angaben gemäß § 5 TMG</h2>
                 <p>
-                    Kurt Kirschbaum GmbH<br />
-                    Wilhelm-Tell-Straße 23<br />
-                    40219 Düsseldorf
+                    {COMPANY_FULL_NAME}<br />
+                    {CONTACT.street}<br />
+                    {CONTACT.zip} {CONTACT.city}
                 </p>
             </div>
 
             <div className="space-y-2">
                 <h2 className="text-xl font-bold text-primary">Vertreten durch:</h2>
-                <p>Geschäftsführer: Marcel Stoeck</p>
+                <p>Geschäftsführer: {LEGAL.managingDirector}</p>
             </div>
 
             <div className="space-y-2">
                 <h2 className="text-xl font-bold text-primary">Kontakt</h2>
                 <p>
-                    Telefon: 0211 391635<br />
-                    E-Mail: info@kirschbaum-gmbh.de
+                    Telefon: {CONTACT.phone}<br />
+                    E-Mail: {CONTACT.email}
                 </p>
             </div>
 
@@ -43,8 +44,8 @@ export const Impressum = () => (
                 <h2 className="text-xl font-bold text-primary">Registereintrag</h2>
                 <p>
                     Eintragung im Handelsregister.<br />
-                    Registergericht: Amtsgericht Düsseldorf<br />
-                    Registernummer: HRB 13698
+                    Registergericht: {LEGAL.court}<br />
+                    Registernummer: {LEGAL.registrationNumber}
                 </p>
             </div>
 
@@ -52,16 +53,16 @@ export const Impressum = () => (
                 <h2 className="text-xl font-bold text-primary">Umsatzsteuer-ID</h2>
                 <p>
                     Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br />
-                    DE119431113
+                    {LEGAL.vatId}
                 </p>
             </div>
 
             <div className="space-y-2">
                 <h2 className="text-xl font-bold text-primary">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
                 <p>
-                    Berufsbezeichnung: Gas- und Wasserinstallateurmeister sowie Heizungs- und Lüftungsbauermeister<br />
-                    Zuständige Kammer: Handwerksrolle der HWK Düsseldorf<br />
-                    Kammernummer: 108 65 61
+                    Berufsbezeichnung: {LEGAL.profession}<br />
+                    Zuständige Kammer: {LEGAL.chamber}<br />
+                    Kammernummer: {LEGAL.chamberNumber}
                 </p>
             </div>
         </div>

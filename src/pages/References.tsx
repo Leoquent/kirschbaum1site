@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
 import { Star, MapPin, ArrowRight, CheckCircle2, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getAssetPath } from '@/constants';
+import { GOOGLE_MAPS_LINK, getAssetPath } from '@/constants';
 
 const projects = [
     {
@@ -179,12 +179,42 @@ export const References = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { text: "Komplette Badsanierung – von der 3D-Planung bis zur letzten Fuge alles top. Das Team war pünktlich, sauber und hat unser Traumebad Realität werden lassen.", name: "Thomas M.", project: "Badsanierung Oberkassel", stars: 5 },
-                            { text: "Heizungswartung und Beratung zum Wärmepumpen-Umstieg. Herr Kirschbaum hat sich persönlich Zeit genommen und alles verständlich erklärt. Absolute Empfehlung!", name: "Sandra K.", project: "Heizungsberatung", stars: 5 },
-                            { text: "Notdienst am Sonntagabend – innerhalb von 45 Minuten war der Techniker da und hat den Rohrbruch professionell behoben. Dafür gibt es die volle Punktzahl.", name: "Michael R.", project: "24h Notdienst", stars: 5 },
-                            { text: "Wir haben unsere Klimaanlage installieren lassen. Super leise, perfekte Kühlung. Die Jungs haben sogar die Kabelführung unsichtbar verlegt – echte Profis.", name: "Anna-Lena S.", project: "Klimaanlage Penthouse", stars: 5 },
-                            { text: "Barrierefreier Badumbau für meine Eltern. Kirschbaum hat sich um die KfW-Förderung gekümmert und wir haben über 6.000€ Zuschuss bekommen. Perfekter Service.", name: "Jonas W.", project: "Barrierefreies Bad", stars: 5 },
-                            { text: "Nach 20 Jahren endlich eine neue Heizung. Der hydraulische Abgleich hat dafür gesorgt, dass jetzt alle Heizkörper gleichmäßig warm werden. Hätten wir viel früher machen sollen!", name: "Petra L.", project: "Heizungstausch", stars: 5 },
+                            {
+                                text: "Meine Therme wurde heute von der Firma Kirschbaum gewartet und der Service war wirklich sehr gut. Kompetente und sehr freundliche Mitarbeiter, die sich wirklich Zeit genommen haben.",
+                                name: "Vlada Brelenko",
+                                project: "Thermenwartung",
+                                stars: 5
+                            },
+                            {
+                                text: "Hr. Hellebrandt hat unsere gesamte WC-Anlage erneuert und versiegelt. Die Fußbodenheizung hat er uns eingestellt und erklärt. Alles erstklassig, fachkundig in Sanitär- und Heizungsfragen.",
+                                name: "Melanie Vizal",
+                                project: "Sanitärtechnik",
+                                stars: 5
+                            },
+                            {
+                                text: "Ich habe mich wegen eines Heizungsproblems an die Firma Kirschbaum gewandt und bin sehr zufrieden. Der zuständige Monteur war sehr fachkundig und konnte mein Problem schnell lösen.",
+                                name: "Max Arbeiter",
+                                project: "Heizungsreparatur",
+                                stars: 5
+                            },
+                            {
+                                text: "Ich kann die Firma Kirschbaum nur weiterempfehlen. Die Mitarbeiter sind fachlich sehr versiert, pünktlich und dazu noch sehr freundlich. Top Service!",
+                                name: "Nika",
+                                project: "Kundenservice",
+                                stars: 5
+                            },
+                            {
+                                text: "Vielen Dank für die freundliche und professionelle Kommunikation und schnelle Abhilfe bei unseren bisherigen Anliegen. Beste Grüße!",
+                                name: "IMOVITA Immobilien",
+                                project: "Hausverwaltung",
+                                stars: 5
+                            },
+                            {
+                                text: "Irgendwann Ende der 80er brauchten wir eine Firma für die Heizungswartung. Kirschbaum wurde empfohlen. Sie übernahmen den Auftrag, wir waren zufrieden. Dabei blieb es bis heute.",
+                                name: "Peter Overmann",
+                                project: "Wartungsvertrag",
+                                stars: 5
+                            },
                         ].map((review, i) => (
                             <motion.div
                                 key={review.name}
@@ -201,12 +231,9 @@ export const References = () => {
                                 </div>
                                 <p className="text-primary/80 leading-relaxed mb-6">"{review.text}"</p>
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">
-                                        {review.name[0]}
-                                    </div>
                                     <div>
                                         <div className="font-bold text-primary text-sm">{review.name}</div>
-                                        <div className="text-primary/50 text-xs">{review.project}</div>
+                                        <div className="text-primary/50 text-xs uppercase tracking-wider font-bold">{review.project}</div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -214,7 +241,7 @@ export const References = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <a href="https://maps.app.goo.gl/Veu4TMt3dUhRbAmH6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
+                        <a href={GOOGLE_MAPS_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
                             Alle Bewertungen auf Google ansehen <ArrowRight className="w-5 h-5" />
                         </a>
                     </div>

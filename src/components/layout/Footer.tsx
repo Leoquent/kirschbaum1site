@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { COMPANY_NAME, LOCATION, CONTACT, getAssetPath } from '@/constants';
+import { COMPANY_NAME, COMPANY_FULL_NAME, CONTACT, SLOGAN, getAssetPath } from '@/constants';
 
 interface FooterProps {
     onOpenEmergency?: () => void;
@@ -15,12 +15,12 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                     <div className="flex items-center gap-3">
                         <img
                             src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
-                            alt="Kirschbaum Logo"
+                            alt={`${COMPANY_NAME} Logo`}
                             className="h-12 w-auto"
                         />
                     </div>
                     <p className="text-text-primary/90 leading-relaxed italic">
-                        "Tradition trifft Innovation – Ihr Meisterbetrieb in Düsseldorf seit 1890."
+                        "{SLOGAN}"
                     </p>
                     <div className="pt-2">
                         <div className="flex items-center gap-2 text-primary font-bold mb-2">
@@ -58,9 +58,9 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                         <li className="flex items-start gap-3 text-sm">
                             <MapPin className="w-5 h-5 shrink-0 text-accent" />
                             <span>
-                                Kurt Kirschbaum GmbH<br />
-                                Wilhelm-Tell-Straße 23<br />
-                                40219 Düsseldorf
+                                {COMPANY_FULL_NAME}<br />
+                                {CONTACT.street}<br />
+                                {CONTACT.zip} {CONTACT.city}
                             </span>
                         </li>
                     </ul>
@@ -93,7 +93,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                 </div>
             </div>
             <div className="max-w-7xl mx-auto px-6 pt-20 text-center text-text-primary/50 text-xs">
-                © {new Date().getFullYear()} Kurt Kirschbaum GmbH. Alle Rechte vorbehalten.
+                © {new Date().getFullYear()} {COMPANY_FULL_NAME}. Alle Rechte vorbehalten.
             </div>
         </footer>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
-import { CONTACT } from '@/constants';
+import { COMPANY_FULL_NAME, CONTACT } from '@/constants';
 import { Phone, Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
 
 export const Contact = () => {
@@ -62,9 +62,9 @@ export const Contact = () => {
                                     <div>
                                         <div className="text-sm font-bold uppercase tracking-widest text-primary/40 mb-1">Standort</div>
                                         <div className="text-2xl font-bold text-primary leading-tight">
-                                            Kurt Kirschbaum GmbH<br />
-                                            Wilhelm-Tell-Straße 23<br />
-                                            40219 Düsseldorf
+                                            {COMPANY_FULL_NAME}<br />
+                                            {CONTACT.street}<br />
+                                            {CONTACT.zip} {CONTACT.city}
                                         </div>
                                     </div>
                                 </div>

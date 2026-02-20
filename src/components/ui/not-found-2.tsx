@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { HomeIcon, ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import { COMPANY_NAME } from "@/constants";
 
 export function NotFoundComponent() {
     const navigate = useNavigate();
@@ -78,7 +79,7 @@ export function NotFoundComponent() {
             {/* Technical Detail Elements */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 text-white/20 text-[10px] uppercase font-bold tracking-[0.4em]">
                 <div className="h-px w-12 bg-white/10" />
-                <span>Kirschbaum SHK &middot; Meisterbetrieb</span>
+                <span>{COMPANY_NAME} SHK &middot; Meisterbetrieb</span>
                 <div className="h-px w-12 bg-white/10" />
             </div>
         </div>

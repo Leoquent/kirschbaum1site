@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, animate } from 'motion/react';
 import {
     ShieldCheck,
     Droplets,
@@ -21,63 +21,188 @@ import { Layout } from '@/components/layout/Layout';
 import { TrustLogos } from '@/components/sections/TrustLogos';
 import { Quiz } from '@/components/sections/Quiz';
 import { AnimatedNumber } from '@/components/utils/AnimatedNumber';
-import { LOCATION, CONTACT, getAssetPath } from '@/constants';
+import { COMPANY_NAME, LOCATION, CONTACT, GOOGLE_MAPS_LINK, getAssetPath } from '@/constants';
 import { Link } from 'react-router-dom';
 
 const ReviewSlider = () => {
+    // Curated list of 8 diverse real reviews EXCLUSIVELY from Google
     const reviews = [
-        { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
-        { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
-        { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" },
-        { text: "Sehr professionelle Beratung bei der neuen Wärmepumpe. Die Montage war pünktlich und sauber.", name: "Lars H.", project: "Heizungsbau" },
-        { text: "Top Service, super freundlich am Telefon und die Handwerker vor Ort wussten genau was sie tun.", name: "Melanie S.", project: "Sanitärtechnik" }
+        {
+            text: "Woran erkennt man die richtig guten Handwerker? Wenn Sie auch 'in der Not' bereit stehen. Heizung am Wochenende ausgefallen... und wer kommt am gleichen Tag? Die Jungs von Kirschbaum. Freundlich, schnell, kompetent!",
+            name: "Dominik Meyenburg",
+            project: "Notdienst",
+            rating: 5
+        },
+        {
+            text: "Toller Service bei der Wartung unserer Heizungsanlage. Das Team war professionell, pünktlich und sehr gründlich. Unsere Wärmepumpe wurde effizienter eingestellt. Wir werden die Firma definitiv wieder beauftragen.",
+            name: "Naji Almahmoud",
+            project: "Wärmepumpen",
+            rating: 5
+        },
+        {
+            text: "Ein dickes Dankeschön für die schnelle und sehr gute Arbeit. Mitarbeiter zuverlässig und stets freundlich. Faire Preise. Wartung und Reparatur von Weishaupt. Als Kunde fühlt man sich gut betreut.",
+            name: "Elke Reggentin",
+            project: "Reparatur",
+            rating: 5
+        },
+        {
+            text: "Absolut empfehlenswert! Die Sanierung des Bades in unserer Ferienwohnung hat, trotz der weiten Entfernung und des engen Zeitplanes, hervorragend geklappt! Sehr saubere Arbeit.",
+            name: "P. Wohlschläger",
+            project: "Badsanierung",
+            rating: 5
+        },
+        {
+            text: "Kirschbaum-Techniker haben heute unsere Fußbodenheizung wegen unzulänglicher Wärmeabgabe überprüft und Problem zügig gelöst! Machen auch für Laien einen absolut professionellen Eindruck.",
+            name: "Manfred Schneider",
+            project: "Fußbodenheizung",
+            rating: 5
+        },
+        {
+            text: "Ich kann die Firma Kirschbaum wirklich nur weiterempfehlen. Alle Arbeiten waren bisher immer tadellos in Ordnung. In 'Notfällen' wird einem wirklich sehr schnell geholfen.",
+            name: "Sandra Esser",
+            project: "Notfall-Service",
+            rating: 5
+        },
+        {
+            text: "Sanitärunternehmen meines Vertrauens seit 2017. Tolles Team. Immer hilfsbereit, zuverlässig, kompetent und schnell. Kann die Firma unbedingt empfehlen.",
+            name: "Heike Hassel",
+            project: "Sanitärtechnik",
+            rating: 5
+        },
+        {
+            text: "Meine Gastherme wurde von der Fa. Kirschbaum gewartet, die ich nur weiter empfehlen kann!! Eine nette Ansprechpartnerin bei der Terminplanung am Telefon war bereits sehr freundlich.",
+            name: "Lu Neu",
+            project: "Heizungswartung",
+            rating: 5
+        }
     ];
 
-    // Triple the reviews for a truly seamless infinite experience even on wide screens
+    // Clone for infinite effect
     const displayReviews = [...reviews, ...reviews, ...reviews];
+    const containerRef = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const [cardWidth, setCardWidth] = useState(482); // Default Desktop: Card(450) + Gap(32)
+
+    useEffect(() => {
+        const calculateWidth = () => {
+            const width = window.innerWidth < 768 ? 332 : 482;
+            setCardWidth(width);
+            // Center the "middle" set of reviews initially
+            x.set(-width * reviews.length);
+        };
+        calculateWidth();
+        window.addEventListener('resize', calculateWidth);
+        return () => window.removeEventListener('resize', calculateWidth);
+    }, [reviews.length, x]);
+
+    // Handle Infinite Jump
+    useEffect(() => {
+        const threshold = cardWidth * reviews.length;
+        const unsubscribe = x.on("change", (latest) => {
+            if (latest <= -threshold * 2) {
+                x.set(latest + threshold);
+            } else if (latest >= -threshold * 0.5) {
+                x.set(latest - threshold);
+            }
+        });
+        return () => unsubscribe();
+    }, [cardWidth, reviews.length, x]);
+
+    const handleNext = () => {
+        const currentX = x.get();
+        animate(x, currentX - cardWidth, { duration: 0.6, ease: [0.22, 1, 0.36, 1] });
+    };
+
+    const handlePrev = () => {
+        const currentX = x.get();
+        animate(x, currentX + cardWidth, { duration: 0.6, ease: [0.22, 1, 0.36, 1] });
+    };
 
     return (
-        <div className="relative overflow-hidden py-10">
-            {/* Soft fade edges */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
-
-            <motion.div
-                className="flex gap-8 px-4 cursor-grab active:cursor-grabbing"
-                animate={{
-                    x: ["0%", "-33.333333%"]
-                }}
-                transition={{
-                    duration: 80, // Very slow motion for better readability
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
-                style={{ width: 'max-content' }}
-                whileHover={{ transition: { duration: 160 } }} // Optional: slow down even more on hover
-            >
-                {displayReviews.map((review, i) => (
-                    <div
-                        key={`${review.name}-${i}`}
-                        className="w-[300px] md:w-[450px] bg-gray-50 rounded-2xl p-8 border border-gray-100 shrink-0 hover:border-accent/30 transition-colors group shadow-sm hover:shadow-md"
+        <div className="relative pt-10 pb-16">
+            <div className="relative group/slider overflow-visible">
+                {/* Navigation Arrows - Desktop */}
+                <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -left-4 z-20">
+                    <button
+                        onClick={handlePrev}
+                        className="p-5 rounded-full border border-primary/10 bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl hover:bg-white transition-all cursor-pointer group"
+                        aria-label="Vorherige Rezension"
                     >
-                        <div className="flex gap-1 mb-4">
-                            {[...Array(5)].map((_, j) => (
-                                <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            ))}
-                        </div>
-                        <p className="text-primary/90 leading-relaxed mb-6 italic text-base">"{review.text}"</p>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm group-hover:bg-accent group-hover:text-white transition-colors">
-                                {review.name[0]}
-                            </div>
-                            <div>
-                                <div className="font-bold text-primary text-sm">{review.name}</div>
-                                <div className="text-primary/50 text-xs">{review.project}</div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </motion.div>
+                        <ChevronLeft className="w-6 h-6 text-primary group-hover:text-accent group-hover:-translate-x-0.5 transition-all" />
+                    </button>
+                </div>
+                <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-4 z-20">
+                    <button
+                        onClick={handleNext}
+                        className="p-5 rounded-full border border-primary/10 bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl hover:bg-white transition-all cursor-pointer group"
+                        aria-label="Nächste Rezension"
+                    >
+                        <ChevronRight className="w-6 h-6 text-primary group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
+                    </button>
+                </div>
+
+                {/* Soft fade edges */}
+                <div className="hidden md:block absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                <div className="hidden md:block absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+                <div className="overflow-hidden px-4 md:px-0" ref={containerRef}>
+                    <motion.div
+                        drag="x"
+                        style={{ x }}
+                        className="flex gap-8 cursor-grab active:cursor-grabbing"
+                        dragElastic={0.05}
+                    >
+                        {displayReviews.map((review, i) => (
+                            <motion.div
+                                key={`${review.name}-${i}`}
+                                className="w-[300px] md:w-[450px] bg-white rounded-3xl p-8 border border-gray-100 shrink-0 hover:border-accent/30 transition-all group shadow-sm hover:shadow-xl relative overflow-hidden"
+                                whileHover={{ y: -5 }}
+                            >
+                                <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors" />
+
+                                <div className="flex gap-1 mb-6">
+                                    {[...Array(5)].map((_, j) => (
+                                        <Star
+                                            key={j}
+                                            className={`w-4 h-4 ${j < (review.rating || 5) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}`}
+                                        />
+                                    ))}
+                                </div>
+                                <p className="text-primary/90 leading-relaxed mb-8 italic text-lg font-light line-clamp-4">
+                                    "{review.text}"
+                                </p>
+                                <div className="flex items-center gap-4">
+                                    <div>
+                                        <div className="font-bold text-primary text-base">{review.name}</div>
+                                        <div className="text-primary/40 text-xs uppercase tracking-widest font-bold">{review.project}</div>
+                                    </div>
+                                    <div className="ml-auto">
+                                        <div className="w-8 h-8 rounded-full bg-white border border-gray-100 flex items-center justify-center shadow-sm">
+                                            <img src="https://www.google.com/favicon.ico" alt="Google" className="w-4 h-4 grayscale group-hover:grayscale-0 transition-opacity" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Mobile Navigation Only */}
+            <div className="flex lg:hidden justify-center gap-6 mt-12 px-4">
+                <button
+                    onClick={handlePrev}
+                    className="p-4 rounded-xl border border-primary/10 bg-white shadow-sm transition-all"
+                >
+                    <ChevronLeft className="w-5 h-5 text-primary" />
+                </button>
+                <button
+                    onClick={handleNext}
+                    className="p-4 rounded-xl border border-primary/10 bg-white shadow-sm transition-all"
+                >
+                    <ChevronRight className="w-5 h-5 text-primary" />
+                </button>
+            </div>
         </div>
     );
 };
@@ -99,7 +224,7 @@ export const Home = () => {
                 <motion.div style={{ y }} className="absolute inset-0 z-0">
                     <img
                         src={getAssetPath("/heroimage.png")}
-                        alt="Handwerker bei der Arbeit - Meisterbetrieb Kirschbaum Düsseldorf"
+                        alt={`Handwerker bei der Arbeit - Meisterbetrieb ${COMPANY_NAME} ${LOCATION}`}
                         className="w-full h-full object-cover opacity-80"
                         loading="eager"
                     />
@@ -263,9 +388,9 @@ export const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2 }}
-                                className="group relative overflow-hidden rounded-3xl bg-gray-50 border border-gray-100 transition-all hover:shadow-2xl"
+                                className="group relative overflow-hidden rounded-3xl bg-gray-50 border border-gray-100 transition-all hover:shadow-2xl flex flex-col"
                             >
-                                <Link to={service.path} className="block cursor-pointer">
+                                <Link to={service.path} className="flex flex-col h-full cursor-pointer">
                                     <div className="aspect-[4/3] overflow-hidden">
                                         <img
                                             src={service.img}
@@ -274,13 +399,13 @@ export const Home = () => {
                                             loading="lazy"
                                         />
                                     </div>
-                                    <div className="p-8 space-y-4">
-                                        <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-accent shadow-lg -mt-16 relative z-10">
+                                    <div className="p-8 flex flex-col flex-grow">
+                                        <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-accent shadow-lg -mt-16 relative z-10 mb-4">
                                             {service.icon}
                                         </div>
-                                        <h3 className="text-2xl font-bold text-primary">{service.title}</h3>
-                                        <p className="text-primary/80 leading-relaxed">{service.desc}</p>
-                                        <div className="flex items-center gap-2 text-accent font-bold group-hover:gap-4 transition-all pt-2">
+                                        <h3 className="text-2xl font-bold text-primary mb-4">{service.title}</h3>
+                                        <p className="text-primary/80 leading-relaxed mb-6">{service.desc}</p>
+                                        <div className="mt-auto flex items-center gap-2 text-accent font-bold group-hover:gap-4 transition-all pt-2">
                                             Mehr erfahren <ChevronRight className="w-4 h-4" />
                                         </div>
                                     </div>
@@ -353,7 +478,7 @@ export const Home = () => {
 
 
                     <div className="text-center mt-12">
-                        <a href="https://maps.app.goo.gl/Veu4TMt3dUhRbAmH6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
+                        <a href={GOOGLE_MAPS_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
                             Alle Rezensionen auf Google ansehen <ArrowRight className="w-5 h-5" />
                         </a>
                     </div>
