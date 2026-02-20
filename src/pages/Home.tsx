@@ -85,10 +85,10 @@ export const Home = () => {
 
                 <motion.div
                     style={{ opacity }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-primary/60"
                 >
                     <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-                    <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
+                    <div className="w-px h-12 bg-gradient-to-b from-text-primary/40 to-transparent" />
                 </motion.div>
             </section>
 
