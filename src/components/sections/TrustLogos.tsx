@@ -8,7 +8,7 @@ const PARTNERS: Partner[] = [
     { name: 'Hansa', logo: '/logos/partners/Hansa.svg.png' },
     { name: 'Hansgrohe', logo: '/logos/partners/Hansgrohe-Logo.svg.png' },
     { name: 'Geberit', logo: '/logos/partners/Geberit-Logo.svg.png' },
-    { name: 'Kermi', logo: '/logos/partners/Kermi_logo.svg.png' },
+    { name: 'Kermi', logo: '/logos/partners/Kermi.png' },
     { name: 'Keuco', logo: '/logos/partners/Keuco_logo.svg.png' },
     { name: 'Grohe', logo: '/logos/partners/grohelogo.png' },
     { name: 'SHK Innung', logo: '/logos/partners/header-logo.svg' },
