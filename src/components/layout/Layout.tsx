@@ -20,13 +20,18 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
         return () => clearTimeout(timer);
     }, []);
 
+    const handleOpenEmergency = () => {
+        setShowEmergencyWidget(true);
+        setIsExpanded(true);
+    };
+
     return (
         <div className="min-h-screen bg-white">
             <Navbar heroScrollProgress={heroScrollProgress} isStatic={isStatic} />
 
             <main>{children}</main>
 
-            <Footer />
+            <Footer onOpenEmergency={handleOpenEmergency} />
 
             {/* Emergency Widget */}
             <AnimatePresence>

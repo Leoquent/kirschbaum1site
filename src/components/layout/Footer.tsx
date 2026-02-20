@@ -3,7 +3,11 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { COMPANY_NAME, LOCATION, CONTACT } from '@/constants';
 
-export const Footer = () => {
+interface FooterProps {
+    onOpenEmergency?: () => void;
+}
+
+export const Footer = ({ onOpenEmergency }: FooterProps) => {
     return (
         <footer className="bg-white py-20 border-t border-gray-100" role="contentinfo">
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -18,7 +22,7 @@ export const Footer = () => {
                     <p className="text-primary/60 leading-relaxed italic">
                         "Tradition trifft Innovation – Ihr Meisterbetrieb in Düsseldorf seit 1890."
                     </p>
-                    <div className="pt-4">
+                    <div className="pt-2">
                         <div className="flex items-center gap-2 text-primary font-bold mb-2">
                             <Clock className="w-4 h-4 text-accent" /> Geschäftszeiten
                         </div>
@@ -26,9 +30,16 @@ export const Footer = () => {
                             Mo-Do: 07:30-17:00 Uhr<br />
                             Freitag: 07:30-15:00 Uhr
                         </p>
-                        <p className="text-accent font-bold text-xs mt-2 uppercase tracking-widest">
-                            24h Notdienst erreichbar
-                        </p>
+                        <button
+                            onClick={onOpenEmergency}
+                            className="text-accent font-bold text-[10px] mt-4 uppercase tracking-[0.15em] hover:text-primary transition-all cursor-pointer flex items-center gap-2 bg-accent/5 px-2.5 py-2 rounded-lg border border-accent/10 w-fit group"
+                        >
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                            </span>
+                            <span className="group-hover:translate-x-0.5 transition-transform italic">24h Notdienst erreichbar</span>
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -72,8 +83,12 @@ export const Footer = () => {
                         <li><Link to="/datenschutz" className="hover:text-accent transition-colors">Datenschutz</Link></li>
                         <li><Link to="/agb" className="hover:text-accent transition-colors">AGB</Link></li>
                     </ul>
-                    <div className="mt-12 opacity-30 grayscale pointer-events-none overflow-hidden">
-                        <img src="/innung.png" alt="Innung SHK" className="h-16 w-auto mx-auto" />
+                    <div className="mt-12 flex justify-center md:justify-start">
+                        <img
+                            src="/innung.png"
+                            alt="Innung SHK"
+                            className="h-16 w-auto object-contain opacity-90 transition-all hover:opacity-100 hover:scale-105"
+                        />
                     </div>
                 </div>
             </div>
