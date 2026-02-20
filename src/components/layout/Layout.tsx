@@ -13,7 +13,7 @@ interface LayoutProps {
 
 export const Layout = ({ children, heroScrollProgress, isStatic = false }: LayoutProps) => {
     const [showEmergencyWidget, setShowEmergencyWidget] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(true);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setShowEmergencyWidget(true), 2000);
@@ -31,49 +31,61 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
             {/* Emergency Widget */}
             <AnimatePresence>
                 {showEmergencyWidget && (
-                    <div className="fixed bottom-8 right-8 z-40 group/widget flex items-end">
-                        <motion.div
-                            initial={{ x: 100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: 100, opacity: 0 }}
-                            className="flex items-stretch bg-primary text-white rounded-2xl shadow-2xl overflow-hidden border border-white/20"
-                        >
-                            {/* Toggle Strip */}
+                    <motion.div
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        className="fixed bottom-32 right-0 z-40 flex items-stretch"
+                    >
+                        <div className="flex items-stretch bg-primary text-white rounded-l-2xl shadow-2xl overflow-hidden border-y border-l border-white/20">
+                            {/* Toggle Strip - Always on the edge */}
                             <div
                                 onClick={() => setIsExpanded(!isExpanded)}
-                                className="w-12 py-6 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-white/5 transition-colors border-r border-white/10"
+                                className="w-12 py-6 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-white/5 transition-colors"
                             >
-                                <Phone className={`w-6 h-6 ${isExpanded ? '' : 'animate-bounce'}`} />
-                                <span className="[writing-mode:vertical-lr] rotate-180 font-bold uppercase tracking-widest text-[10px]">
-                                    {isExpanded ? 'Schließen' : 'Notdienst'}
+                                <Phone className={`w-5 h-5 ${isExpanded ? '' : 'animate-bounce'}`} />
+                                <span className="[writing-mode:vertical-lr] rotate-180 font-bold uppercase tracking-widest text-[9px] whitespace-nowrap">
+                                    {isExpanded ? 'Einklappen' : 'Notdienst'}
                                 </span>
                             </div>
 
-                            {/* Content Section */}
+                            {/* Content Section - Slides out from the right edge to the left */}
                             <motion.div
                                 initial={false}
                                 animate={{
                                     width: isExpanded ? 'auto' : 0,
                                     opacity: isExpanded ? 1 : 0
                                 }}
-                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                className="overflow-hidden bg-white/10 backdrop-blur-xl flex"
+                                className="overflow-hidden flex bg-white/10 backdrop-blur-xl border-l border-white/10 relative"
                             >
-                                <div className="p-6 space-y-4 min-w-[240px]">
+                                <div className="p-6 space-y-4 min-w-[260px] relative">
+                                    {/* Close Button (Completely hide) */}
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setShowEmergencyWidget(false);
+                                        }}
+                                        className="absolute top-2 right-2 p-1 bg-white/10 hover:bg-white/20 rounded-md transition-colors cursor-pointer"
+                                        title="Ganz schließen"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+
                                     <div className="space-y-1">
                                         <div className="text-xs font-bold uppercase tracking-widest text-white/60">365 Tage Hilfe</div>
-                                        <div className="text-xl font-bold font-display">24h Notdienst</div>
+                                        <div className="text-xl font-bold font-display leading-none">24h Notdienst</div>
                                     </div>
-                                    <p className="text-sm text-white/80 leading-relaxed">
-                                        Wasserbruch? Heizungsausfall? <br />Wir sind sofort und immer für Sie da. <br />Auch an Feiertagen.
+                                    <p className="text-xs text-white/80 leading-relaxed">
+                                        Wasserbruch? Heizungsausfall? <br />Wir sind sofort für Sie da. <br />Auch an Feiertagen.
                                     </p>
-                                    <a href={`tel:${CONTACT.phoneLink}`} className="flex items-center justify-center gap-3 bg-white text-primary py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors shadow-lg">
-                                        <Phone className="w-5 h-5" /> {CONTACT.phone}
+                                    <a href={`tel:${CONTACT.phoneLink}`} className="flex items-center justify-center gap-3 bg-white text-primary py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors shadow-lg text-sm">
+                                        <Phone className="w-4 h-4" strokeWidth={3} /> {CONTACT.phone}
                                     </a>
                                 </div>
                             </motion.div>
-                        </motion.div>
-                    </div>
+                        </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>
