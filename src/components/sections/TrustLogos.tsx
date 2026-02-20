@@ -4,21 +4,21 @@ import { motion } from 'motion/react';
 type Partner = { name: string; logo: string };
 
 const PARTNERS: Partner[] = [
-    { name: 'Viessmann', logo: '/logos/partners/Viessmann-logo.svg.png' },
-    { name: 'Hansa', logo: '/logos/partners/Hansa.svg.png' },
-    { name: 'Hansgrohe', logo: '/logos/partners/Hansgrohe-Logo.svg.png' },
-    { name: 'Geberit', logo: '/logos/partners/Geberit-Logo.svg.png' },
-    { name: 'Kermi', logo: '/logos/partners/Kermi.svg' },
-    { name: 'Keuco', logo: '/logos/partners/Keuco_logo.svg.png' },
-    { name: 'Grohe', logo: '/logos/partners/grohelogo.png' },
-    { name: 'SHK Innung', logo: '/logos/partners/header-logo.svg' },
-    { name: 'Badpunkt', logo: '/logos/partners/logo-badpunkt.svg' },
-    { name: 'Lumina', logo: '/logos/partners/lumina_Claim_4c-small.png' },
-    { name: 'Mitsubishi', logo: '/logos/partners/mitsubishilogo.svg' },
-    { name: 'Tago', logo: '/logos/partners/tago-logo.svg' },
-    { name: 'Vaillant', logo: '/logos/partners/vaillantlogo.svg' },
-    { name: 'Weisshaupt', logo: '/logos/partners/weisshauptlogo.svg' },
-    { name: 'Wilo', logo: '/logos/partners/wilologo.png' },
+    { name: 'Viessmann', logo: '/logos/partners/Viessmann.png' },
+    { name: 'Hansa', logo: '/logos/partners/Hansa.png' },
+    { name: 'Hansgrohe', logo: '/logos/partners/Hansgrohe.png' },
+    { name: 'Geberit', logo: '/logos/partners/Geberit.png' },
+    { name: 'Kermi', logo: '/logos/partners/Kermi.png' },
+    { name: 'Keuco', logo: '/logos/partners/Keuco.png' },
+    { name: 'Grohe', logo: '/logos/partners/Grohe.png' },
+    { name: 'SHK Innung', logo: '/logos/partners/SHK_Innung.png' },
+    { name: 'Badpunkt', logo: '/logos/partners/Badpunkt.png' },
+    { name: 'Lumina', logo: '/logos/partners/Lumina.png' },
+    { name: 'Mitsubishi', logo: '/logos/partners/Mitsubishi.png' },
+    { name: 'Tago', logo: '/logos/partners/Tago.png' },
+    { name: 'Vaillant', logo: '/logos/partners/Vaillant.png' },
+    { name: 'Weisshaupt', logo: '/logos/partners/Weisshaupt.png' },
+    { name: 'Wilo', logo: '/logos/partners/Wilo.png' },
 ];
 
 const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];
