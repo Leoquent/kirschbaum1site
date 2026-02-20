@@ -93,25 +93,8 @@ export const Home = () => {
             </section>
 
             {/* Trust & Logos Section */}
-            <section className="py-20 bg-white overflow-hidden">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="hidden lg:flex flex-wrap items-center justify-center gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                        <TrustLogos />
-                    </div>
-                    <div className="lg:hidden relative overflow-hidden">
-                        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10" />
-                        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10" />
-                        <motion.div
-                            className="flex gap-16 items-center whitespace-nowrap py-4"
-                            animate={{ x: [0, -1000] }}
-                            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                        >
-                            <TrustLogos />
-                            <TrustLogos />
-                            <TrustLogos />
-                        </motion.div>
-                    </div>
-                </div>
+            <section className="py-10 bg-white overflow-hidden border-b border-gray-100">
+                <TrustLogos />
             </section>
 
             {/* Stats Counter Section */}
@@ -180,10 +163,10 @@ export const Home = () => {
                         <Quiz />
                     </motion.div>
                 </div>
-            </section>
+            </section >
 
             {/* Services Section */}
-            <section id="leistungen" className="py-32 bg-white">
+            < section id="leistungen" className="py-32 bg-white" >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center space-y-4 mb-20">
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-primary tracking-tight">Unsere Kompetenzen</h2>
@@ -246,10 +229,10 @@ export const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Process Section */}
-            <section className="py-32 bg-gray-50 relative overflow-hidden">
+            < section className="py-32 bg-gray-50 relative overflow-hidden" >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center space-y-4 mb-20">
                         <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
@@ -287,10 +270,10 @@ export const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Google Reviews Section */}
-            <section className="py-24 bg-white border-t border-gray-100">
+            < section className="py-24 bg-white border-t border-gray-100" >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center space-y-8 mb-20">
                         <div className="inline-flex items-center gap-4 px-6 py-2.5 rounded-full bg-primary/5 border border-primary/10">
@@ -301,7 +284,7 @@ export const Home = () => {
                             </div>
                             <div className="w-px h-4 bg-primary/20" />
                             <span className="text-primary text-[11px] font-bold uppercase tracking-widest whitespace-nowrap">
-                                4.7 ★ Bewertung · 500+ Projekte
+                                4.7★ Bewertung · 500+ Projekte
                             </span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
@@ -346,10 +329,10 @@ export const Home = () => {
                         </a>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Call to Action */}
-            <section className="py-32 bg-primary relative overflow-hidden">
+            < section className="py-32 bg-primary relative overflow-hidden" >
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
                 </div>
@@ -372,7 +355,7 @@ export const Home = () => {
                         </button>
                     </Link>
                 </div>
-            </section>
-        </Layout>
+            </section >
+        </Layout >
     );
 };
