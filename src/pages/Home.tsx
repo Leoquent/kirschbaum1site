@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import {
     ShieldCheck,
     Droplets,
@@ -23,6 +23,72 @@ import { Quiz } from '@/components/sections/Quiz';
 import { AnimatedNumber } from '@/components/utils/AnimatedNumber';
 import { LOCATION, CONTACT } from '@/constants';
 import { Link } from 'react-router-dom';
+
+const ReviewSlider = () => {
+    const reviews = [
+        { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
+        { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
+        { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" },
+        { text: "Sehr professionelle Beratung bei der neuen Wärmepumpe. Die Montage war pünktlich und sauber.", name: "Lars H.", project: "Heizungsbau" },
+        { text: "Top Service, super freundlich am Telefon und die Handwerker vor Ort wussten genau was sie tun.", name: "Melanie S.", project: "Sanitärtechnik" }
+    ];
+    const [index, setIndex] = React.useState(0);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % reviews.length);
+        }, 7000);
+        return () => clearInterval(timer);
+    }, [reviews.length]);
+
+    const review = reviews[index];
+
+    return (
+        <div className="relative overflow-hidden px-4 md:px-0 max-w-lg mx-auto md:max-w-none">
+            <div className="flex justify-center">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5 }}
+                        className="w-full md:w-[600px] bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm"
+                    >
+                        <div className="flex gap-1 mb-6">
+                            {[...Array(5)].map((_, j) => (
+                                <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                            ))}
+                        </div>
+                        <p className="text-xl md:text-2xl text-primary/80 leading-relaxed mb-8 italic font-light">
+                            "{review.text}"
+                        </p>
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-lg">
+                                {review.name[0]}
+                            </div>
+                            <div>
+                                <div className="font-bold text-primary text-base">{review.name}</div>
+                                <div className="text-primary/50 text-sm">{review.project}</div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 mt-8">
+                {reviews.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setIndex(i)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${i === index ? 'bg-primary w-4' : 'bg-primary/20'}`}
+                        aria-label={`Gehe zu Review ${i + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 export const Home = () => {
     const heroRef = useRef(null);
@@ -295,65 +361,15 @@ export const Home = () => {
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
                     </div>
 
-                    <div className="relative overflow-hidden px-4 md:px-0">
-                        <motion.div
-                            className="flex gap-8"
-                            animate={{
-                                x: [0, -100 * 3 + '%'], // Simplified infinite scroll logic placeholder or standard carousel
-                            }}
-                            transition={{
-                                duration: 30,
-                                ease: "linear",
-                                repeat: Infinity,
-                                repeatType: "loop"
-                            }}
-                            style={{ width: 'max-content' }}
-                        >
-                            {[...Array(2)].flatMap(() => [
-                                { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
-                                { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
-                                { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" },
-                                { text: "Sehr professionelle Beratung bei der neuen Wärmepumpe. Die Montage war pünktlich und sauber.", name: "Lars H.", project: "Heizungsbau" },
-                                { text: "Top Service, super freundlich am Telefon und die Handwerker vor Ort wussten genau was sie tun.", name: "Melanie S.", project: "Sanitärtechnik" }
-                            ]).map((review, i) => (
-                                <div
-                                    key={`${review.name}-${i}`}
-                                    className="w-[300px] md:w-[400px] bg-gray-50 rounded-2xl p-8 border border-gray-100 shrink-0"
-                                >
-                                    <div className="flex gap-1 mb-4">
-                                        {[...Array(5)].map((_, j) => (
-                                            <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-primary/80 leading-relaxed mb-6 italic text-sm">"{review.text}"</p>
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
-                                            {review.name[0]}
-                                        </div>
-                                        <div>
-                                            <div className="font-bold text-primary text-xs">{review.name}</div>
-                                            <div className="text-primary/50 text-[10px]">{review.project}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </motion.div>
+                    <ReviewSlider />
 
-                        <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none">
-                            <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-md flex items-center justify-center text-primary/40 pointer-events-auto cursor-pointer hover:bg-white transition-colors">
-                                <ChevronLeft className="w-6 h-6" />
-                            </div>
-                            <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-md flex items-center justify-center text-primary/40 pointer-events-auto cursor-pointer hover:bg-white transition-colors">
-                                <ChevronRight className="w-6 h-6" />
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="text-center">
+                    <div className="text-center mt-12">
                         <a href="https://maps.app.goo.gl/Veu4TMt3dUhRbAmH6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
                             Alle Rezensionen auf Google ansehen <ArrowRight className="w-5 h-5" />
                         </a>
                     </div>
+
                 </div>
             </section >
 
