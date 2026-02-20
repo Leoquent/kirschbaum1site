@@ -19,7 +19,7 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/kirschbaum1site">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />

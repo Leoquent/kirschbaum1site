@@ -21,7 +21,7 @@ import { Layout } from '@/components/layout/Layout';
 import { TrustLogos } from '@/components/sections/TrustLogos';
 import { Quiz } from '@/components/sections/Quiz';
 import { AnimatedNumber } from '@/components/utils/AnimatedNumber';
-import { LOCATION, CONTACT } from '@/constants';
+import { LOCATION, CONTACT, getAssetPath } from '@/constants';
 import { Link } from 'react-router-dom';
 
 const ReviewSlider = () => {
@@ -98,7 +98,7 @@ export const Home = () => {
             <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
                 <motion.div style={{ y }} className="absolute inset-0 z-0">
                     <img
-                        src="/heroimage.png"
+                        src={getAssetPath("/heroimage.png")}
                         alt="Handwerker bei der Arbeit - Meisterbetrieb Kirschbaum Düsseldorf"
                         className="w-full h-full object-cover opacity-80"
                         loading="eager"
@@ -239,21 +239,21 @@ export const Home = () => {
                                 title: "Bad & Sanitär",
                                 desc: "Wir verwandeln Ihr Badezimmer in eine Wellness-Oase. Von der 3D-Planung bis zur schlüsselfertigen Übergabe – zum Festpreis.",
                                 icon: <Droplets className="w-8 h-8" />,
-                                img: "/badsanitaer.png",
+                                img: getAssetPath("/badsanitaer.png"),
                                 path: "/leistungen/bad"
                             },
                             {
                                 title: "Heizung & Energie",
                                 desc: "Zukunftssichere Heizsysteme: Wärmepumpen, Solarthermie oder Brennwerttechnik. Inklusive Förderberatung – wir kümmern uns um Ihre Fördermittel.",
                                 icon: <Flame className="w-8 h-8" />,
-                                img: "/heizungenergie.png",
+                                img: getAssetPath("/heizungenergie.png"),
                                 path: "/leistungen/heizung"
                             },
                             {
                                 title: "Klima & Lüftung",
                                 desc: "Perfektes Raumklima zu jeder Jahreszeit. Beratung, Montage und Wartung aus einer Hand – für Ihr Zuhause und Gewerbe.",
                                 icon: <Wind className="w-8 h-8" />,
-                                img: "/klimalueftung.png",
+                                img: getAssetPath("/klimalueftung.png"),
                                 path: "/leistungen/klima"
                             }
                         ].map((service, i) => (

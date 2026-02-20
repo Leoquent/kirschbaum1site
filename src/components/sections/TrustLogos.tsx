@@ -1,24 +1,26 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
+import { getAssetPath } from '@/constants';
+
 type Partner = { name: string; logo: string };
 
 const PARTNERS: Partner[] = [
-    { name: 'Viessmann', logo: '/logos/partners/viessmann.png' },
-    { name: 'Hansa', logo: '/logos/partners/hansa.png' },
-    { name: 'Hansgrohe', logo: '/logos/partners/hansgrohe.png' },
-    { name: 'Geberit', logo: '/logos/partners/geberit.png' },
-    { name: 'Kermi', logo: '/logos/partners/kermi.png' },
-    { name: 'Keuco', logo: '/logos/partners/keuco.png' },
-    { name: 'Grohe', logo: '/logos/partners/grohe.png' },
-    { name: 'SHK Innung', logo: '/logos/partners/shk_innung.png' },
-    { name: 'Badpunkt', logo: '/logos/partners/badpunkt.png' },
-    { name: 'Lumina', logo: '/logos/partners/lumina.png' },
-    { name: 'Mitsubishi', logo: '/logos/partners/mitsubishi.png' },
-    { name: 'Tago', logo: '/logos/partners/tago.svg' },
-    { name: 'Vaillant', logo: '/logos/partners/vaillant.png' },
-    { name: 'Weisshaupt', logo: '/logos/partners/weisshaupt.png' },
-    { name: 'Wilo', logo: '/logos/partners/wilo.png' },
+    { name: 'Viessmann', logo: getAssetPath('/logos/partners/viessmann.png') },
+    { name: 'Hansa', logo: getAssetPath('/logos/partners/hansa.png') },
+    { name: 'Hansgrohe', logo: getAssetPath('/logos/partners/hansgrohe.png') },
+    { name: 'Geberit', logo: getAssetPath('/logos/partners/geberit.png') },
+    { name: 'Kermi', logo: getAssetPath('/logos/partners/kermi.png') },
+    { name: 'Keuco', logo: getAssetPath('/logos/partners/keuco.png') },
+    { name: 'Grohe', logo: getAssetPath('/logos/partners/grohe.png') },
+    { name: 'SHK Innung', logo: getAssetPath('/logos/partners/shk_innung.png') },
+    { name: 'Badpunkt', logo: getAssetPath('/logos/partners/badpunkt.png') },
+    { name: 'Lumina', logo: getAssetPath('/logos/partners/lumina.png') },
+    { name: 'Mitsubishi', logo: getAssetPath('/logos/partners/mitsubishi.png') },
+    { name: 'Tago', logo: getAssetPath('/logos/partners/tago.svg') },
+    { name: 'Vaillant', logo: getAssetPath('/logos/partners/vaillant.png') },
+    { name: 'Weisshaupt', logo: getAssetPath('/logos/partners/weisshaupt.png') },
+    { name: 'Wilo', logo: getAssetPath('/logos/partners/wilo.png') },
 ];
 
 const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];

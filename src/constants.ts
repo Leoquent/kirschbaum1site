@@ -24,3 +24,10 @@ export const SOCIALS = {
   instagram: "https://instagram.com/kirschbaum_shk",
   facebook: "https://facebook.com/kirschbaum_shk",
 };
+
+export const getAssetPath = (path: string) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  return `${cleanBase}${cleanPath}`;
+};
