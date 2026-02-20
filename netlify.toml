@@ -1,12 +1,18 @@
-/* Reference: https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps */
-/* Redirect all requests to index.html so React Router can handle them */
-/* Status 200 means Netlify will serve the content of index.html while keeping the URL */
+# Reference: https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps
+# Redirect all requests to index.html so React Router can handle them
+# Status 200 means Netlify will serve the content of index.html while keeping the URL
 
-/*  Request Path   Destination Path   Status Code */
-/*  ------------   ----------------   ----------- */
-/*  *              /index.html        200         */
+#  Request Path   Destination Path   Status Code
+#  ------------   ----------------   -----------
+#  *              /index.html        200
+
+[build]
+  publish = "dist"
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+
