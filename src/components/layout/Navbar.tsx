@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence, useTransform, MotionValue } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Mail } from 'lucide-react';
+import { getAssetPath } from '@/constants';
 
 const NAV_LINKS = [
     { name: 'Leistungen', href: '/leistungen' },
@@ -24,7 +25,7 @@ const StaticNavbar = () => {
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-4 shrink-0">
                     <img
-                        src="/Kirschbaum-Logo_transparent.png"
+                        src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
                         alt="Kirschbaum Logo"
                         className="h-12 md:h-16 w-auto object-contain"
                     />
@@ -102,7 +103,7 @@ const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-4 shrink-0">
                     <motion.img
-                        src="/Kirschbaum-Logo_transparent.png"
+                        src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
                         alt="Kirschbaum Logo"
                         style={{ filter: logoFilter }}
                         className="h-12 md:h-16 w-auto object-contain"
