@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Services } from './pages/Services';
+import { References } from './pages/References';
 import { Impressum, Datenschutz, AGB } from './pages/Legal';
 import NotFound from './NotFound';
 
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
         <Route path="/kontakt" element={<Contact />} />
+        <Route path="/referenzen" element={<References />} />
 
         {/* Services */}
         <Route path="/leistungen" element={<Services />} />

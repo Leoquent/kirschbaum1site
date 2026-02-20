@@ -289,63 +289,32 @@ export const Home = () => {
                 </div>
             </section>
 
-            {/* Google Reviews Section */}
-            <section className="py-32 bg-white">
+            {/* Reviews Teaser → links to /referenzen */}
+            <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center space-y-4 mb-16">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
-                            <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                            Google Bewertungen
-                        </div>
-                        <h2 className="text-4xl md:text-6xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
-                        <div className="flex items-center justify-center gap-3 pt-4">
-                            <div className="flex gap-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-7 h-7 fill-yellow-400 text-yellow-400" />
-                                ))}
+                    <div className="bg-gray-50 rounded-[32px] p-10 md:p-16 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-10">
+                        <div className="space-y-4 text-center md:text-left">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
+                                <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                                Google Bewertungen
                             </div>
-                            <span className="text-3xl font-bold text-primary">4.7</span>
-                            <span className="text-primary/60">/ 5.0</span>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top.", name: "Thomas M.", project: "Badsanierung" },
-                            { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent.", name: "Sandra K.", project: "Heizungswartung" },
-                            { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da.", name: "Michael R.", project: "Notdienst" }
-                        ].map((review, i) => (
-                            <motion.div
-                                key={review.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.15 }}
-                                className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
-                            >
-                                <div className="flex gap-1 mb-4">
-                                    {[...Array(5)].map((_, j) => (
-                                        <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            <h2 className="text-3xl md:text-5xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
+                            <div className="flex items-center gap-3 justify-center md:justify-start pt-2">
+                                <div className="flex gap-1">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
                                     ))}
                                 </div>
-                                <p className="text-primary/80 leading-relaxed mb-6 italic">"{review.text}"</p>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">
-                                        {review.name[0]}
-                                    </div>
-                                    <div>
-                                        <div className="font-bold text-primary text-sm">{review.name}</div>
-                                        <div className="text-primary/50 text-xs">{review.project}</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="text-center mt-12">
-                        <a href="https://maps.app.goo.gl/Veu4TMt3dUhRbAmH6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all">
-                            Alle Bewertungen auf Google ansehen <ArrowRight className="w-4 h-4" />
-                        </a>
+                                <span className="text-2xl font-bold text-primary">4.7</span>
+                                <span className="text-primary/50">/ 5.0</span>
+                            </div>
+                            <p className="text-primary/60 text-lg max-w-md">Über 500 zufriedene Kunden in Düsseldorf und Umgebung. Sehen Sie unsere Projektbeispiele und Bewertungen.</p>
+                        </div>
+                        <Link to="/referenzen">
+                            <button className="bg-primary text-white px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-transform shadow-xl cursor-pointer whitespace-nowrap flex items-center gap-3">
+                                Referenzen ansehen <ArrowRight className="w-5 h-5" />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </section>

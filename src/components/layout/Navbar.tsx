@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
     { name: 'Leistungen', href: '/leistungen' },
+    { name: 'Referenzen', href: '/referenzen' },
     { name: 'Über uns', href: '/ueber-uns' },
     { name: 'Karriere', href: '/karriere' },
 ];
