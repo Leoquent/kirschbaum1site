@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
 import { Star, MapPin, ArrowRight, CheckCircle2, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getAssetPath } from '@/constants';
 
 const projects = [
     {
@@ -12,7 +13,7 @@ const projects = [
         year: "2025",
         desc: "Komplette Kernsanierung eines 18m² Bads mit bodengleicher Regendusche, freistehender Badewanne und smarter Lichtsteuerung. Materialien: Großformat-Feinsteinzeug und Eichenholz-Waschtischplatte.",
         tags: ["Wellness", "Smart Home", "Barrierefreiheit"],
-        img: "/badsanitaer.png",
+        img: getAssetPath("/badsanitaer.png"),
         duration: "6 Wochen",
     },
     {
@@ -22,7 +23,7 @@ const projects = [
         year: "2024",
         desc: "Umstellung von Öl-Heizung auf Luft-Wasser-Wärmepumpe inkl. Fußbodenheizung-Nachrüstung im Bestandsbau. Förderberatung und KfW-Antragstellung übernommen – über 40% Fördermittel gesichert.",
         tags: ["Wärmepumpe", "Fördermittel", "Energiewende"],
-        img: "/heizungenergie.png",
+        img: getAssetPath("/heizungenergie.png"),
         duration: "4 Wochen",
     },
     {
@@ -32,7 +33,7 @@ const projects = [
         year: "2025",
         desc: "Multi-Split-Klimaanlage für 5-Zimmer-Penthouse mit zentraler Steuerung über Smartphone-App. Flüsterleise Innengeräte und energieeffiziente Inverter-Technologie.",
         tags: ["Multi-Split", "Smart Control", "Energieeffizient"],
-        img: "/klimalueftung.png",
+        img: getAssetPath("/klimalueftung.png"),
         duration: "3 Wochen",
     },
     {
@@ -42,7 +43,7 @@ const projects = [
         year: "2024",
         desc: "Altersgerechter Badumbau mit schwellenloser Dusche, Stütz- und Haltegriffen sowie Anti-Rutsch-Fliesen. Volle KfW-Förderung beantragt und bewilligt.",
         tags: ["Barrierefrei", "KfW-Förderung", "Senioren"],
-        img: "/badsanitaer.png",
+        img: getAssetPath("/badsanitaer.png"),
         duration: "5 Wochen",
     },
     {
@@ -52,7 +53,7 @@ const projects = [
         year: "2024",
         desc: "Austausch einer 25 Jahre alten Heizungsanlage gegen moderne Gasbrennwert-Therme mit hydraulischem Abgleich. Energieeinsparung von ca. 30% erreicht.",
         tags: ["Brennwerttechnik", "Wartung", "Hydraulischer Abgleich"],
-        img: "/heizungenergie.png",
+        img: getAssetPath("/heizungenergie.png"),
         duration: "2 Wochen",
     },
     {
@@ -62,7 +63,7 @@ const projects = [
         year: "2025",
         desc: "Kontrollierte Wohnraumlüftung mit Wärmerückgewinnung für ein Bürogebäude mit 12 Einheiten. Integration in das bestehende Gebäudeleitsystem.",
         tags: ["Lüftungsanlage", "Wärmerückgewinnung", "Gewerbe"],
-        img: "/klimalueftung.png",
+        img: getAssetPath("/klimalueftung.png"),
         duration: "8 Wochen",
     },
 ];

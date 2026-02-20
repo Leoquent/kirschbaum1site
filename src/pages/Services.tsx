@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
 import { Droplets, Flame, Wind, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getAssetPath } from '@/constants';
 
 export const Services = () => {
     const services = [
@@ -10,7 +11,7 @@ export const Services = () => {
             title: "Bad & Sanitär",
             desc: "Von der ersten 3D-Planung bis zum fertigen Traumbad. Wir koordinieren alle Gewerke für Sie.",
             icon: <Droplets className="w-12 h-12" />,
-            img: "/badsanitaer.png",
+            img: getAssetPath("/badsanitaer.png"),
             path: "/leistungen/bad",
             tags: ["Badsanierung", "Barrierefrei", "3D-Planung", "Wellness"]
         },
@@ -18,7 +19,7 @@ export const Services = () => {
             title: "Heizung & Energie",
             desc: "Nachhaltige Heizlösungen für die Zukunft. Wärmepumpen, Wartung und Notdienst.",
             icon: <Flame className="w-12 h-12" />,
-            img: "/heizungenergie.png",
+            img: getAssetPath("/heizungenergie.png"),
             path: "/leistungen/heizung",
             tags: ["Wärmepumpen", "Gasthermen", "Wartung", "Notdienst"]
         },
@@ -26,7 +27,7 @@ export const Services = () => {
             title: "Klima & Lüftung",
             desc: "Perfektes Klima in jedem Raum. Smarte Lüftungssysteme und moderne Klimatisierung.",
             icon: <Wind className="w-12 h-12" />,
-            img: "/klimalueftung.png",
+            img: getAssetPath("/klimalueftung.png"),
             path: "/leistungen/klima",
             tags: ["Klimaanlagen", "Wohnraumlüftung", "Luftreinigung"]
         }
