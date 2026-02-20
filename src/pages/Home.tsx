@@ -32,60 +32,52 @@ const ReviewSlider = () => {
         { text: "Sehr professionelle Beratung bei der neuen Wärmepumpe. Die Montage war pünktlich und sauber.", name: "Lars H.", project: "Heizungsbau" },
         { text: "Top Service, super freundlich am Telefon und die Handwerker vor Ort wussten genau was sie tun.", name: "Melanie S.", project: "Sanitärtechnik" }
     ];
-    const [index, setIndex] = React.useState(0);
 
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-            setIndex((prev) => (prev + 1) % reviews.length);
-        }, 7000);
-        return () => clearInterval(timer);
-    }, [reviews.length]);
-
-    const review = reviews[index];
+    // Triple the reviews for a truly seamless infinite experience even on wide screens
+    const displayReviews = [...reviews, ...reviews, ...reviews];
 
     return (
-        <div className="relative overflow-hidden px-4 md:px-0 max-w-lg mx-auto md:max-w-none">
-            <div className="flex justify-center">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full md:w-[600px] bg-gray-50 rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm"
+        <div className="relative overflow-hidden py-10">
+            {/* Soft fade edges */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+
+            <motion.div
+                className="flex gap-8 px-4 cursor-grab active:cursor-grabbing"
+                animate={{
+                    x: ["0%", "-33.333333%"]
+                }}
+                transition={{
+                    duration: 80, // Very slow motion for better readability
+                    ease: "linear",
+                    repeat: Infinity,
+                }}
+                style={{ width: 'max-content' }}
+                whileHover={{ transition: { duration: 160 } }} // Optional: slow down even more on hover
+            >
+                {displayReviews.map((review, i) => (
+                    <div
+                        key={`${review.name}-${i}`}
+                        className="w-[300px] md:w-[450px] bg-gray-50 rounded-2xl p-8 border border-gray-100 shrink-0 hover:border-accent/30 transition-colors group shadow-sm hover:shadow-md"
                     >
-                        <div className="flex gap-1 mb-6">
+                        <div className="flex gap-1 mb-4">
                             {[...Array(5)].map((_, j) => (
-                                <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                                <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                             ))}
                         </div>
-                        <p className="text-xl md:text-2xl text-primary/80 leading-relaxed mb-8 italic font-light">
-                            "{review.text}"
-                        </p>
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-lg">
+                        <p className="text-primary/90 leading-relaxed mb-6 italic text-base">"{review.text}"</p>
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm group-hover:bg-accent group-hover:text-white transition-colors">
                                 {review.name[0]}
                             </div>
                             <div>
-                                <div className="font-bold text-primary text-base">{review.name}</div>
-                                <div className="text-primary/50 text-sm">{review.project}</div>
+                                <div className="font-bold text-primary text-sm">{review.name}</div>
+                                <div className="text-primary/50 text-xs">{review.project}</div>
                             </div>
                         </div>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            <div className="flex justify-center items-center gap-2 mt-8">
-                {reviews.map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setIndex(i)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${i === index ? 'bg-primary w-4' : 'bg-primary/20'}`}
-                        aria-label={`Gehe zu Review ${i + 1}`}
-                    />
+                    </div>
                 ))}
-            </div>
+            </motion.div>
         </div>
     );
 };
