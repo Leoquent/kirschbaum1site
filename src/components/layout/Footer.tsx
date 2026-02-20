@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { COMPANY_NAME, LOCATION, CONTACT } from '@/constants';
+import { COMPANY_NAME, LOCATION, CONTACT, getAssetPath } from '@/constants';
 
 interface FooterProps {
     onOpenEmergency?: () => void;
@@ -14,7 +14,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                 <div className="space-y-6">
                     <div className="flex items-center gap-3">
                         <img
-                            src="/Kirschbaum-Logo_transparent.png"
+                            src={getAssetPath("/Kirschbaum-Logo_transparent.png")}
                             alt="Kirschbaum Logo"
                             className="h-12 w-auto"
                         />
@@ -85,7 +85,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                     </ul>
                     <div className="mt-12 flex justify-center md:justify-start">
                         <img
-                            src="/innung.png"
+                            src={getAssetPath("/innung.png")}
                             alt="Innung SHK"
                             className="h-16 w-auto object-contain opacity-90 transition-all hover:opacity-100 hover:scale-105"
                         />

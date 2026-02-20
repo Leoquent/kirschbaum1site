@@ -5,27 +5,31 @@ import { getAssetPath } from '@/constants';
 
 type Partner = { name: string; logo: string };
 
-const PARTNERS: Partner[] = [
-    { name: 'Viessmann', logo: getAssetPath('/logos/partners/viessmann.png') },
-    { name: 'Hansa', logo: getAssetPath('/logos/partners/hansa.png') },
-    { name: 'Hansgrohe', logo: getAssetPath('/logos/partners/hansgrohe.png') },
-    { name: 'Geberit', logo: getAssetPath('/logos/partners/geberit.png') },
-    { name: 'Kermi', logo: getAssetPath('/logos/partners/kermi.png') },
-    { name: 'Keuco', logo: getAssetPath('/logos/partners/keuco.png') },
-    { name: 'Grohe', logo: getAssetPath('/logos/partners/grohe.png') },
-    { name: 'SHK Innung', logo: getAssetPath('/logos/partners/shk_innung.png') },
-    { name: 'Badpunkt', logo: getAssetPath('/logos/partners/badpunkt.png') },
-    { name: 'Lumina', logo: getAssetPath('/logos/partners/lumina.png') },
-    { name: 'Mitsubishi', logo: getAssetPath('/logos/partners/mitsubishi.png') },
-    { name: 'Tago', logo: getAssetPath('/logos/partners/tago.svg') },
-    { name: 'Vaillant', logo: getAssetPath('/logos/partners/vaillant.png') },
-    { name: 'Weisshaupt', logo: getAssetPath('/logos/partners/weisshaupt.png') },
-    { name: 'Wilo', logo: getAssetPath('/logos/partners/wilo.png') },
+const PARTNER_DATA = [
+    { name: 'Viessmann', logo: '/logos/partners/viessmann.png' },
+    { name: 'Hansa', logo: '/logos/partners/hansa.png' },
+    { name: 'Hansgrohe', logo: '/logos/partners/hansgrohe.png' },
+    { name: 'Geberit', logo: '/logos/partners/geberit.png' },
+    { name: 'Kermi', logo: '/logos/partners/kermi.png' },
+    { name: 'Keuco', logo: '/logos/partners/keuco.png' },
+    { name: 'Grohe', logo: '/logos/partners/grohe.png' },
+    { name: 'SHK Innung', logo: '/logos/partners/shk_innung.png' },
+    { name: 'Badpunkt', logo: '/logos/partners/badpunkt.png' },
+    { name: 'Lumina', logo: '/logos/partners/lumina.png' },
+    { name: 'Mitsubishi', logo: '/logos/partners/mitsubishi.png' },
+    { name: 'Tado', logo: '/logos/partners/tago.svg' },
+    { name: 'Vaillant', logo: '/logos/partners/vaillant.png' },
+    { name: 'Weisshaupt', logo: '/logos/partners/weisshaupt.png' },
+    { name: 'Wilo', logo: '/logos/partners/wilo.png' },
 ];
 
-const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];
-
 export const TrustLogos = () => {
+    const partners = PARTNER_DATA.map(p => ({
+        ...p,
+        logo: getAssetPath(p.logo)
+    }));
+    const infinitePartners = [...partners, ...partners];
+
     return (
         <div className="relative w-full bg-white py-10">
             <div className="text-center mb-10 px-6">
@@ -52,7 +56,7 @@ export const TrustLogos = () => {
                             repeat: Infinity,
                         }}
                     >
-                        {INFINITE_PARTNERS.map((partner, index) => (
+                        {infinitePartners.map((partner, index) => (
                             <div
                                 key={`${partner.name}-${index}`}
                                 className="flex items-center justify-center shrink-0 w-44 px-8"
@@ -60,7 +64,7 @@ export const TrustLogos = () => {
                                 <motion.img
                                     src={partner.logo}
                                     alt={partner.name}
-                                    className="h-9 w-auto object-contain transition-all duration-300 filter grayscale brightness-50 opacity-60 hover:grayscale-0 hover:opacity-100 hover:brightness-100"
+                                    className="h-10 w-auto object-contain transition-all duration-300 filter grayscale brightness-75 opacity-70 hover:grayscale-0 hover:opacity-100 hover:brightness-100"
                                     whileHover={{ scale: 1.05 }}
                                 />
                             </div>
