@@ -45,7 +45,7 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
                                 className="w-12 py-6 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-white/5 transition-colors"
                             >
                                 <Phone className={`w-5 h-5 ${isExpanded ? '' : 'animate-bounce'}`} />
-                                <span className="[writing-mode:vertical-lr] rotate-180 font-bold uppercase tracking-[0.2em] text-[11px] whitespace-nowrap">
+                                <span className="[writing-mode:vertical-lr] rotate-180 font-bold uppercase tracking-[0.2em] text-[12px] whitespace-nowrap">
                                     {isExpanded ? 'Einklappen' : 'Notdienst'}
                                 </span>
                             </div>
@@ -74,10 +74,10 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
 
                                     <div className="space-y-1">
                                         <div className="text-xl font-bold font-display leading-none">365 Tage Hilfe</div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">Notdienst von 06:00 - 22:00 Uhr</div>
+                                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">24h Notdienst erreichbar</div>
                                     </div>
                                     <p className="text-sm text-white/80 leading-relaxed">
-                                        Wasserbruch? Heizungsausfall? <br />Wir sind für Sie da. <br />Auch an Feiertagen.
+                                        Wasserbruch? Heizungsausfall? <br />Wir sind sofort für Sie da. <br />Auch an Feiertagen.
                                     </p>
                                     <a href={`tel:${CONTACT.phoneLink}`} className="flex items-center justify-center gap-3 bg-white text-primary py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors shadow-lg text-sm">
                                         <Phone className="w-4 h-4" strokeWidth={3} /> {CONTACT.phone}

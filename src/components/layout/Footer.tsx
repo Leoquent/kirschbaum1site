@@ -27,7 +27,7 @@ export const Footer = () => {
                             Freitag: 07:30-15:00 Uhr
                         </p>
                         <p className="text-accent font-bold text-xs mt-2 uppercase tracking-widest">
-                            Notdienst: 06:00-22:00 Uhr
+                            24h Notdienst erreichbar
                         </p>
                     </div>
                 </div>

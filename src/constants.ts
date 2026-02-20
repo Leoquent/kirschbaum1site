@@ -17,7 +17,7 @@ export const CONTACT = {
   email: "info@kirschbaum-gmbh.de",
   address: "Wilhelm-Tell-Straße 23, 40219 Düsseldorf",
   openingHours: "Mo-Do: 07:30-17:00 Uhr, Fr: 07:30-15:00 Uhr",
-  emergencyHours: "Täglich 06:00 - 22:00 Uhr",
+  emergencyHours: "24h Notdienst",
 };
 
 export const SOCIALS = {

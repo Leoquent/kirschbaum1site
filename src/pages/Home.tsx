@@ -289,9 +289,17 @@ export const Home = () => {
                 </div>
             </section>
 
-            {/* Google Reviews Selection */}
+            {/* Google Reviews Section */}
             <section className="py-24 bg-white border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center space-y-4 mb-20">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
+                            <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                            Google Bewertungen
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                         {[
                             { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
@@ -325,29 +333,10 @@ export const Home = () => {
                         ))}
                     </div>
 
-                    <div className="bg-gray-50 rounded-[32px] p-10 md:p-16 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-10">
-                        <div className="space-y-4 text-center md:text-left">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
-                                <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                                Google Bewertungen
-                            </div>
-                            <h2 className="text-3xl md:text-5xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
-                            <div className="flex items-center gap-3 justify-center md:justify-start pt-2">
-                                <div className="flex gap-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-                                    ))}
-                                </div>
-                                <span className="text-2xl font-bold text-primary">4.7</span>
-                                <span className="text-primary/50">/ 5.0</span>
-                            </div>
-                            <p className="text-primary/60 text-lg max-w-md">Über 500 zufriedene Kunden in Düsseldorf und Umgebung. Sehen Sie unsere Projektbeispiele und Bewertungen.</p>
-                        </div>
-                        <Link to="/referenzen">
-                            <button className="bg-primary text-white px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-transform shadow-xl cursor-pointer whitespace-nowrap flex items-center gap-3">
-                                Referenzen ansehen <ArrowRight className="w-5 h-5" />
-                            </button>
-                        </Link>
+                    <div className="text-center">
+                        <a href="https://maps.app.goo.gl/Veu4TMt3dUhRbAmH6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-accent font-bold hover:gap-4 transition-all text-lg">
+                            Alle Rezensionen auf Google ansehen <ArrowRight className="w-5 h-5" />
+                        </a>
                     </div>
                 </div>
             </section>
