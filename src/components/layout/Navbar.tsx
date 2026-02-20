@@ -22,8 +22,12 @@ const StaticNavbar = () => {
             aria-label="Hauptnavigation"
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-4">
-                    <img src="/Kirschbaum-Logo_transparent.png" alt="Kirschbaum Logo" className="h-16 w-auto" />
+                <Link to="/" className="flex items-center gap-4 shrink-0">
+                    <img
+                        src="/Kirschbaum-Logo_transparent.png"
+                        alt="Kirschbaum Logo"
+                        className="h-12 md:h-16 w-auto object-contain"
+                    />
                 </Link>
 
                 <div className="flex items-center gap-4 md:gap-8">
@@ -42,7 +46,7 @@ const StaticNavbar = () => {
                     </Link>
 
                     <button
-                        className="md:hidden p-2 text-primary focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+                        className="md:hidden p-2 text-primary focus-visible:ring-2 focus-visible:ring-accent rounded-lg shrink-0"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
                     >
@@ -95,12 +99,12 @@ const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue
             aria-label="Hauptnavigation"
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-4">
+                <Link to="/" className="flex items-center gap-4 shrink-0">
                     <motion.img
                         src="/Kirschbaum-Logo_transparent.png"
                         alt="Kirschbaum Logo"
                         style={{ filter: logoFilter }}
-                        className="h-16 w-auto"
+                        className="h-12 md:h-16 w-auto object-contain"
                     />
                 </Link>
 
@@ -122,7 +126,7 @@ const DynamicNavbar = ({ heroScrollProgress }: { heroScrollProgress: MotionValue
                     </Link>
 
                     <motion.button
-                        className="md:hidden p-2 focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+                        className="md:hidden p-2 focus-visible:ring-2 focus-visible:ring-accent rounded-lg shrink-0"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
                         style={{ color: linkColor }}

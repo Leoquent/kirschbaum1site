@@ -14,7 +14,8 @@ import {
     Wrench,
     Handshake,
     Phone,
-    Mail
+    Mail,
+    ChevronLeft
 } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { TrustLogos } from '@/components/sections/TrustLogos';
@@ -60,7 +61,8 @@ export const Home = () => {
                         </div>
 
                         <h1 className="text-5xl md:text-8xl font-display font-bold text-white tracking-tight leading-[0.95]">
-                            Ihr Bad. Ihr Zuhause. <br />
+                            <span className="block md:inline">Ihr Bad. </span>
+                            <span className="block md:inline">Ihr Zuhause. </span><br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">Unser Handwerk.</span>
                         </h1>
 
@@ -276,51 +278,71 @@ export const Home = () => {
             < section className="py-24 bg-white border-t border-gray-100" >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center space-y-8 mb-20">
-                        <div className="inline-flex items-center gap-4 px-6 py-2.5 rounded-full bg-primary/5 border border-primary/10">
-                            <div className="flex gap-0.5">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                ))}
+                        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/5 border border-primary/10 backdrop-blur-sm">
+                            <div className="flex items-center gap-1.5">
+                                <span className="text-primary font-bold text-sm">4.7</span>
+                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                             </div>
                             <div className="w-px h-4 bg-primary/20" />
                             <span className="text-primary text-[11px] font-bold uppercase tracking-widest whitespace-nowrap">
-                                4.7★ Bewertung · 500+ Projekte
+                                500+ Projekte
                             </span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-display font-bold text-primary tracking-tight">Das sagen unsere Kunden</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                        {[
-                            { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
-                            { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
-                            { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" }
-                        ].map((review, i) => (
-                            <motion.div
-                                key={review.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
-                            >
-                                <div className="flex gap-1 mb-4">
-                                    {[...Array(5)].map((_, j) => (
-                                        <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                    ))}
-                                </div>
-                                <p className="text-primary/80 leading-relaxed mb-6 italic text-sm">"{review.text}"</p>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
-                                        {review.name[0]}
+                    <div className="relative overflow-hidden px-4 md:px-0">
+                        <motion.div
+                            className="flex gap-8"
+                            animate={{
+                                x: [0, -100 * 3 + '%'], // Simplified infinite scroll logic placeholder or standard carousel
+                            }}
+                            transition={{
+                                duration: 30,
+                                ease: "linear",
+                                repeat: Infinity,
+                                repeatType: "loop"
+                            }}
+                            style={{ width: 'max-content' }}
+                        >
+                            {[...Array(2)].flatMap(() => [
+                                { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
+                                { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
+                                { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" },
+                                { text: "Sehr professionelle Beratung bei der neuen Wärmepumpe. Die Montage war pünktlich und sauber.", name: "Lars H.", project: "Heizungsbau" },
+                                { text: "Top Service, super freundlich am Telefon und die Handwerker vor Ort wussten genau was sie tun.", name: "Melanie S.", project: "Sanitärtechnik" }
+                            ]).map((review, i) => (
+                                <div
+                                    key={`${review.name}-${i}`}
+                                    className="w-[300px] md:w-[400px] bg-gray-50 rounded-2xl p-8 border border-gray-100 shrink-0"
+                                >
+                                    <div className="flex gap-1 mb-4">
+                                        {[...Array(5)].map((_, j) => (
+                                            <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        ))}
                                     </div>
-                                    <div>
-                                        <div className="font-bold text-primary text-xs">{review.name}</div>
-                                        <div className="text-primary/50 text-[10px]">{review.project}</div>
+                                    <p className="text-primary/80 leading-relaxed mb-6 italic text-sm">"{review.text}"</p>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                            {review.name[0]}
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-primary text-xs">{review.name}</div>
+                                            <div className="text-primary/50 text-[10px]">{review.project}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </motion.div>
-                        ))}
+                            ))}
+                        </motion.div>
+
+                        <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 pointer-events-none">
+                            <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-md flex items-center justify-center text-primary/40 pointer-events-auto cursor-pointer hover:bg-white transition-colors">
+                                <ChevronLeft className="w-6 h-6" />
+                            </div>
+                            <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-md flex items-center justify-center text-primary/40 pointer-events-auto cursor-pointer hover:bg-white transition-colors">
+                                <ChevronRight className="w-6 h-6" />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="text-center">

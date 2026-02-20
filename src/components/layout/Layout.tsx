@@ -26,7 +26,7 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
     };
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white overflow-x-clip relative">
             <Navbar heroScrollProgress={heroScrollProgress} isStatic={isStatic} />
 
             <main>{children}</main>
@@ -62,7 +62,7 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
                                     width: isExpanded ? 'auto' : 0,
                                     opacity: isExpanded ? 1 : 0
                                 }}
-                                className="overflow-hidden flex bg-white/10 backdrop-blur-xl border-l border-white/10 relative"
+                                className="overflow-hidden flex bg-primary/95 backdrop-blur-xl border-l border-white/10 relative"
                             >
                                 <div className="p-6 space-y-4 min-w-[260px] relative">
                                     {/* Close Button (Completely hide) */}

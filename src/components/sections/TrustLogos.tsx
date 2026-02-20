@@ -26,8 +26,11 @@ const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];
 export const TrustLogos = () => {
     return (
         <div className="relative w-full bg-white py-10">
-            <div className="text-center mb-10">
-                <h3 className="text-[#58585a] text-sm font-bold uppercase tracking-[0.25em]">Gutes Handwerk braucht gute Partner</h3>
+            <div className="text-center mb-10 px-6">
+                <h3 className="text-[#58585a] text-sm font-bold uppercase tracking-[0.25em] leading-relaxed">
+                    <span className="block md:inline">Gutes Handwerk </span>
+                    <span>braucht gute Partner</span>
+                </h3>
             </div>
 
             <div className="relative overflow-hidden">
