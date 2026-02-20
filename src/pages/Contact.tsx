@@ -38,7 +38,7 @@ export const Contact = () => {
                                         </a>
                                         <div className="space-y-1 mt-2">
                                             <p className="text-primary/50 text-xs"><b>Büro:</b> {CONTACT.openingHours}</p>
-                                            <p className="text-accent font-bold text-xs uppercase tracking-wide"><b>Notdienst:</b> 24h erreichbar</p>
+                                            <p className="text-accent font-bold text-xs uppercase tracking-wide"><b>Notdienst:</b> 24h</p>
                                         </div>
                                     </div>
                                 </div>

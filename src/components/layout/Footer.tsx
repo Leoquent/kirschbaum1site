@@ -19,14 +19,14 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                             className="h-12 w-auto"
                         />
                     </div>
-                    <p className="text-primary/60 leading-relaxed italic">
+                    <p className="text-text-primary/90 leading-relaxed italic">
                         "Tradition trifft Innovation – Ihr Meisterbetrieb in Düsseldorf seit 1890."
                     </p>
                     <div className="pt-2">
                         <div className="flex items-center gap-2 text-primary font-bold mb-2">
                             <Clock className="w-4 h-4 text-accent" /> Geschäftszeiten
                         </div>
-                        <p className="text-primary/60 text-sm">
+                        <p className="text-text-primary/80 text-sm">
                             Mo-Do: 07:30-17:00 Uhr<br />
                             Freitag: 07:30-15:00 Uhr
                         </p>
@@ -38,13 +38,13 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                             </span>
-                            <span className="group-hover:translate-x-0.5 transition-transform italic">24h Notdienst erreichbar</span>
+                            <span className="group-hover:translate-x-0.5 transition-transform">24h Notdienst</span>
                         </button>
                     </div>
                 </div>
                 <div>
                     <h4 className="font-bold text-primary mb-6">Leistungen</h4>
-                    <ul className="space-y-4 text-primary/60">
+                    <ul className="space-y-4 text-text-primary/80">
                         <li><Link to="/leistungen/bad" className="hover:text-accent transition-colors">Badplanung & Sanitär</Link></li>
                         <li><Link to="/leistungen/heizung" className="hover:text-accent transition-colors">Heizung & Energie</Link></li>
                         <li><Link to="/leistungen/klima" className="hover:text-accent transition-colors">Klima & Lüftung</Link></li>
@@ -54,7 +54,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                 </div>
                 <div>
                     <h4 className="font-bold text-primary mb-6">Anschrift</h4>
-                    <ul className="space-y-4 text-primary/60">
+                    <ul className="space-y-4 text-text-primary/80">
                         <li className="flex items-start gap-3 text-sm">
                             <MapPin className="w-5 h-5 shrink-0 text-accent" />
                             <span>
@@ -65,7 +65,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                         </li>
                     </ul>
                     <h4 className="font-bold text-primary mt-8 mb-6">Kontakt</h4>
-                    <ul className="space-y-4 text-primary/60">
+                    <ul className="space-y-4 text-text-primary/80">
                         <li className="flex items-center gap-3">
                             <Phone className="w-5 h-5 shrink-0 text-accent" />
                             <a href={`tel:${CONTACT.phoneLink}`} className="hover:text-primary transition-colors">{CONTACT.phone}</a>
@@ -78,7 +78,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                 </div>
                 <div>
                     <h4 className="font-bold text-primary mb-6">Rechtliches</h4>
-                    <ul className="space-y-4 text-primary/60 text-sm">
+                    <ul className="space-y-4 text-text-primary/80 text-sm">
                         <li><Link to="/impressum" className="hover:text-accent transition-colors">Impressum</Link></li>
                         <li><Link to="/datenschutz" className="hover:text-accent transition-colors">Datenschutz</Link></li>
                         <li><Link to="/agb" className="hover:text-accent transition-colors">AGB</Link></li>
@@ -92,7 +92,7 @@ export const Footer = ({ onOpenEmergency }: FooterProps) => {
                     </div>
                 </div>
             </div>
-            <div className="max-w-7xl mx-auto px-6 pt-20 text-center text-primary/40 text-xs">
+            <div className="max-w-7xl mx-auto px-6 pt-20 text-center text-text-primary/50 text-xs">
                 © {new Date().getFullYear()} Kurt Kirschbaum GmbH. Alle Rechte vorbehalten.
             </div>
         </footer>

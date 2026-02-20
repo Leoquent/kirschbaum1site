@@ -79,7 +79,7 @@ export const Layout = ({ children, heroScrollProgress, isStatic = false }: Layou
 
                                     <div className="space-y-1">
                                         <div className="text-xl font-bold font-display leading-none">365 Tage Hilfe</div>
-                                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">24h Notdienst erreichbar</div>
+                                        <div className="text-[10px] font-bold uppercase tracking-widest text-white/60">24h Notdienst</div>
                                     </div>
                                     <p className="text-sm text-white/80 leading-relaxed">
                                         Wasserbruch? Heizungsausfall? <br />Wir sind sofort für Sie da. <br />Auch an Feiertagen.

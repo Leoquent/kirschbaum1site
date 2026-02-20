@@ -123,7 +123,7 @@ export const Home = () => {
                             { value: 130, suffix: "+", label: "Jahre Erfahrung" },
                             { value: 5, suffix: ".", label: "Generation" },
                             { value: 500, suffix: "+", label: "Zufriedene Kunden" },
-                            { value: 365, suffix: "", label: "Tage erreichbar" },
+                            { value: 365, suffix: "", label: "Tage im Einsatz" },
                         ].map((stat, i) => (
                             <motion.div
                                 key={stat.label}
