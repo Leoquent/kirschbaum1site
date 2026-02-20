@@ -36,7 +36,10 @@ export const Contact = () => {
                                         <a href={`tel:${CONTACT.phoneLink}`} className="text-2xl font-bold text-primary hover:text-accent transition-colors">
                                             {CONTACT.phone}
                                         </a>
-                                        <p className="text-primary/50 text-sm mt-1">Mo-Fr: 08:00 - 17:00 Uhr</p>
+                                        <div className="space-y-1 mt-2">
+                                            <p className="text-primary/50 text-xs"><b>Büro:</b> {CONTACT.openingHours}</p>
+                                            <p className="text-accent font-bold text-xs uppercase tracking-wide"><b>Notdienst:</b> {CONTACT.emergencyHours}</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -58,8 +61,10 @@ export const Contact = () => {
                                     </div>
                                     <div>
                                         <div className="text-sm font-bold uppercase tracking-widest text-primary/40 mb-1">Standort</div>
-                                        <div className="text-2xl font-bold text-primary">
-                                            {CONTACT.address}
+                                        <div className="text-2xl font-bold text-primary leading-tight">
+                                            Kurt Kirschbaum GmbH<br />
+                                            Wilhelm-Tell-Straße 23<br />
+                                            40219 Düsseldorf
                                         </div>
                                     </div>
                                 </div>

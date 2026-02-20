@@ -8,20 +8,19 @@ export const COLORS = {
 };
 
 export const COMPANY_NAME = "Kirschbaum";
-export const COMPANY_FULL_NAME = "Kirschbaum Sanitär & Heizung";
+export const COMPANY_FULL_NAME = "Kurt Kirschbaum GmbH";
 export const LOCATION = "Düsseldorf";
 
 export const CONTACT = {
-  phone: "0211 / 000 000",
-  phoneLink: "+49211000000",
-  email: "info@kirschbaum-shk.de",
-  address: "Beispielstraße 123, 40210 Düsseldorf",
-  openingHours: "Mo-Fr: 08:00 - 17:00 Uhr",
-  emergencyPhone: "0211 / 000 000", // Same for now, can be different
+  phone: "0211 391635",
+  phoneLink: "+49211391635",
+  email: "info@kirschbaum-gmbh.de",
+  address: "Wilhelm-Tell-Straße 23, 40219 Düsseldorf",
+  openingHours: "Mo-Do: 07:30-17:00 Uhr, Fr: 07:30-15:00 Uhr",
+  emergencyHours: "Täglich 06:00 - 22:00 Uhr",
 };
 
 export const SOCIALS = {
   instagram: "https://instagram.com/kirschbaum_shk",
   facebook: "https://facebook.com/kirschbaum_shk",
 };
-

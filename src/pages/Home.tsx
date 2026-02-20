@@ -289,9 +289,42 @@ export const Home = () => {
                 </div>
             </section>
 
-            {/* Reviews Teaser → links to /referenzen */}
-            <section className="py-24 bg-white">
+            {/* Google Reviews Selection */}
+            <section className="py-24 bg-white border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                        {[
+                            { text: "Komplette Badsanierung durchgeführt. Von Beratung bis Fertigstellung top. Sehr sauber gearbeitet.", name: "Thomas M.", project: "Badsanierung" },
+                            { text: "Schneller Service bei Heizungswartung. Team freundlich und kompetent. Gerne wieder!", name: "Sandra K.", project: "Heizungswartung" },
+                            { text: "Notdienst am Wochenende – innerhalb einer Stunde war jemand da. Problem sofort gelöst.", name: "Michael R.", project: "Notdienst" }
+                        ].map((review, i) => (
+                            <motion.div
+                                key={review.name}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
+                            >
+                                <div className="flex gap-1 mb-4">
+                                    {[...Array(5)].map((_, j) => (
+                                        <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                    ))}
+                                </div>
+                                <p className="text-primary/80 leading-relaxed mb-6 italic text-sm">"{review.text}"</p>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                        {review.name[0]}
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-primary text-xs">{review.name}</div>
+                                        <div className="text-primary/50 text-[10px]">{review.project}</div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
                     <div className="bg-gray-50 rounded-[32px] p-10 md:p-16 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-10">
                         <div className="space-y-4 text-center md:text-left">
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-widest">
