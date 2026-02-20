@@ -25,9 +25,9 @@ const INFINITE_PARTNERS = [...PARTNERS, ...PARTNERS];
 
 export const TrustLogos = () => {
     return (
-        <div className="relative w-full bg-white py-12">
-            <div className="text-center mb-12">
-                <h3 className="text-gray-400 text-xs font-bold uppercase tracking-[0.2em]">Gutes Handwerk braucht gute Partner</h3>
+        <div className="relative w-full bg-white py-10">
+            <div className="text-center mb-10">
+                <h3 className="text-[#58585a] text-sm font-bold uppercase tracking-[0.25em]">Gutes Handwerk braucht gute Partner</h3>
             </div>
 
             <div className="relative overflow-hidden">
@@ -42,7 +42,7 @@ export const TrustLogos = () => {
                             x: [0, '-50%'],
                         }}
                         transition={{
-                            duration: 50,
+                            duration: 60,
                             ease: "linear",
                             repeat: Infinity,
                         }}
@@ -50,13 +50,13 @@ export const TrustLogos = () => {
                         {INFINITE_PARTNERS.map((partner, index) => (
                             <div
                                 key={`${partner.name}-${index}`}
-                                className="flex items-center justify-center shrink-0 w-48 px-8"
+                                className="flex items-center justify-center shrink-0 w-44 px-8"
                             >
                                 <motion.img
                                     src={partner.logo}
                                     alt={partner.name}
-                                    className="h-10 w-auto object-contain transition-all duration-300"
-                                    whileHover={{ scale: 1.1 }}
+                                    className="h-9 w-auto object-contain transition-all duration-300 filter grayscale brightness-50 opacity-60 hover:grayscale-0 hover:opacity-100 hover:brightness-100"
+                                    whileHover={{ scale: 1.05 }}
                                 />
                             </div>
                         ))}
