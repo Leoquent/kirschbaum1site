@@ -23,13 +23,16 @@ const PARTNER_DATA = [
     { name: 'Wilo', logo: '/logos/partners/Wilo.png' },
 ];
 
-export const TrustLogos = () => {
-    const partners = PARTNER_DATA.map(p => ({
-        ...p,
-        logo: getAssetPath(p.logo)
-    }));
-    const infinitePartners = [...partners, ...partners];
+// Optimization: Pre-calculate partners array outside component to avoid
+// recreating it on every render.
+const partners = PARTNER_DATA.map(p => ({
+    ...p,
+    logo: getAssetPath(p.logo)
+}));
+const infinitePartners = [...partners, ...partners];
 
+// Optimization: Memoize component to prevent re-renders when parent updates
+export const TrustLogos = React.memo(() => {
     return (
         <div className="relative w-full bg-white py-10">
             <div className="text-center mb-10 px-6">
@@ -74,4 +77,6 @@ export const TrustLogos = () => {
             </div>
         </div>
     );
-};
+});
+
+TrustLogos.displayName = 'TrustLogos';
