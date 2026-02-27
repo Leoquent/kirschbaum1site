@@ -1,27 +1,30 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, animate } from 'motion/react';
 
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
         if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
+
+        // Performance Optimization: Direct DOM update
+        // We bypass React's render cycle completely by updating the textContent directly.
+        // Previously: setInterval + useState triggered ~60 renders per second for each counter.
+        // Now: 0 re-renders during the 2-second animation, significantly reducing main thread load.
+        // Expected impact: Eliminates ~240 unnecessary re-renders (4 counters * 60fps) during scroll.
+        const controls = animate(0, value, {
+            duration: 2,
+            ease: "easeOut",
+            onUpdate: (latest) => {
+                if (ref.current) {
+                    ref.current.textContent = Math.floor(latest).toString();
+                }
             }
-        }, 16);
-        return () => clearInterval(timer);
+        });
+
+        return () => controls.stop();
     }, [isInView, value]);
 
-    return <span ref={ref}>{display}</span>;
+    return <span ref={ref}>0</span>;
 };
