@@ -1,27 +1,26 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, useMotionValue, useSpring } from 'motion/react';
 
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
+    const motionValue = useMotionValue(0);
+    const springValue = useSpring(motionValue, { duration: 2000, bounce: 0 });
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
-            }
-        }, 16);
-        return () => clearInterval(timer);
-    }, [isInView, value]);
+        if (isInView) {
+            motionValue.set(value);
+        }
+    }, [isInView, value, motionValue]);
 
-    return <span ref={ref}>{display}</span>;
+    useEffect(() => {
+        const unsubscribe = springValue.on("change", (latest) => {
+            if (ref.current) {
+                ref.current.textContent = String(Math.floor(latest));
+            }
+        });
+        return unsubscribe;
+    }, [springValue]);
+
+    return <span ref={ref}>0</span>;
 };
