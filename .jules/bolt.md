@@ -1,0 +1,3 @@
+## 2026-02-27 - Prevent Unnecessary Renders in High-Frequency Animations
+**Learning:** Using `setInterval` coupled with `useState` for visual numeric counters causes massive, continuous React re-renders proportional to the FPS and number of counters (e.g., 60 renders/sec * 4 counters = 240 renders/sec during animation).
+**Action:** Replace React state-driven loops in counters (`setInterval` + `useState`) with direct DOM updates. Use `motion`'s `animate` function combined with a direct `ref.current.textContent` update to bypass React's virtual DOM reconciliation entirely.
