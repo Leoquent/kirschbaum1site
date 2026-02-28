@@ -1,0 +1,3 @@
+## 2024-03-01 - Optimizing AnimatedNumber component
+**Learning:** The `AnimatedNumber` component uses `setInterval` to manually update a `display` state 60 times a second over 2 seconds (`setInterval(..., 16)`). This triggers massive amounts of React re-renders while animating.
+**Action:** `AnimatedNumber` can be significantly optimized using `framer-motion`'s `useMotionValue` and `animate()` functionality. Updating a motion value directly doesn't trigger React re-renders, while still updating the DOM efficiently via the `<motion.span>` element. This bypasses React's render cycle completely for the animation frames, drastically reducing CPU usage and layout thrashing during mount animations.
