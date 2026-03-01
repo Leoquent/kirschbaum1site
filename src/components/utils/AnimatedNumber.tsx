@@ -1,27 +1,23 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, useMotionValue, useTransform, animate, motion } from 'motion/react';
 
+// ⚡ Bolt: Animation Optimization
+// What: Replaced React state/setInterval with Framer Motion's useMotionValue.
+// Why: The previous setInterval approach called setDisplay every 16ms, causing ~125 React re-renders per animated number over 2 seconds.
+// Impact: Reduces React re-renders from ~125 to 1 (just the initial mount) per number, bypassing the React render cycle completely for the animation frames.
+// Measurement: Use React DevTools Profiler to observe zero renders during the 2-second animation phase of the stats section.
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
+    const count = useMotionValue(0);
+    const rounded = useTransform(count, (latest) => Math.round(latest));
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
-            }
-        }, 16);
-        return () => clearInterval(timer);
-    }, [isInView, value]);
+        if (isInView) {
+            const controls = animate(count, value, { duration: 2 });
+            return () => controls.stop();
+        }
+    }, [isInView, value, count]);
 
-    return <span ref={ref}>{display}</span>;
+    return <motion.span ref={ref}>{rounded}</motion.span>;
 };
