@@ -1,0 +1,3 @@
+## 2025-03-02 - React State Animations
+**Learning:** High-frequency state updates in React (like updating a number 60 times a second using `setInterval` and `useState` during an animation) cause a significant and unnecessary CPU load by triggering the render cycle repeatedly for a single node.
+**Action:** When animating values that only affect a specific DOM node's visual output (like text content), bypass React's render loop entirely. Use framer-motion/react's `animate` function to directly update the `ref.current.textContent`. The Virtual DOM handles the static `<span>0</span>` efficiently during unrelated parent renders without overwriting the uncontrolled text changes.
