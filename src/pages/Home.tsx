@@ -21,6 +21,7 @@ import { Layout } from '@/components/layout/Layout';
 import { TrustLogos } from '@/components/sections/TrustLogos';
 import { Quiz } from '@/components/sections/Quiz';
 import { AnimatedNumber } from '@/components/utils/AnimatedNumber';
+import { StarRating } from '@/components/ui/StarRating';
 import { COMPANY_NAME, LOCATION, CONTACT, GOOGLE_MAPS_LINK, getAssetPath } from '@/constants';
 import { Link } from 'react-router-dom';
 
@@ -161,12 +162,7 @@ const ReviewSlider = () => {
                                 <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors" />
 
                                 <div className="flex gap-1 mb-6">
-                                    {[...Array(5)].map((_, j) => (
-                                        <Star
-                                            key={j}
-                                            className={`w-4 h-4 ${j < (review.rating || 5) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}`}
-                                        />
-                                    ))}
+                                    <StarRating rating={review.rating || 5} />
                                 </div>
                                 <p className="text-primary/90 leading-relaxed mb-8 italic text-lg font-light line-clamp-4">
                                     "{review.text}"
