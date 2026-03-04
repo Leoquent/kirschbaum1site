@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Layout } from '@/components/layout/Layout';
 import { Star, MapPin, ArrowRight, CheckCircle2, Award } from 'lucide-react';
+import { StarRating } from '@/components/ui/StarRating';
 import { Link } from 'react-router-dom';
 import { GOOGLE_MAPS_LINK, getAssetPath } from '@/constants';
 
@@ -225,9 +226,7 @@ export const References = () => {
                                 className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
                             >
                                 <div className="flex gap-1 mb-4">
-                                    {[...Array(review.stars)].map((_, j) => (
-                                        <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                    ))}
+                                    <StarRating rating={review.stars} className="w-4 h-4 fill-yellow-400 text-yellow-400" maxRating={review.stars} />
                                 </div>
                                 <p className="text-primary/80 leading-relaxed mb-6">"{review.text}"</p>
                                 <div className="flex items-center gap-3">
