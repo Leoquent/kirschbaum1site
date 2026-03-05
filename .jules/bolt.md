@@ -1,0 +1,3 @@
+## 2024-05-24 - High-Frequency Animation Performance Pattern
+**Learning:** Found a critical performance anti-pattern where high-frequency animations (like number counters) were triggering excessive React re-renders via `setInterval` and `useState`. This causes significant main thread blocking, particularly harmful in components rendered multiple times.
+**Action:** Always use `motion/react`'s `animate` function to directly update DOM nodes (e.g., modifying `ref.current.textContent`) for fast-updating values, bypassing React's render cycle completely. This specific optimization eliminated ~125 re-renders per component instance.
