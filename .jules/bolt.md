@@ -1,0 +1,3 @@
+## 2024-05-24 - High-Frequency Animations in React
+**Learning:** Using `useState` and `setInterval` for high-frequency animations (like an animated number counter updating every 16ms) causes severe performance bottlenecks due to excessive React re-renders (60+ per second per instance).
+**Action:** Always bypass the React render cycle for these types of high-frequency DOM updates. Use `motion/react`'s `animate` function combined with a `ref` to directly update the DOM node (e.g., `ref.current.textContent = value.toFixed(0)`). This completely eliminates React re-renders while maintaining smooth animations.
