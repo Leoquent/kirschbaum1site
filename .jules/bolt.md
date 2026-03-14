@@ -1,0 +1,3 @@
+## 2024-05-24 - High-Frequency DOM Mutations
+**Learning:** Using `useState` combined with `setInterval` for high-frequency updates (like animated number counters over a 2-second duration) causes excessive and unnecessary React render cycles (~125 renders per component).
+**Action:** When animating continuous values that don't structurally change the DOM, use `motion/react`'s `animate` function on a `ref` (e.g., `ref.current.textContent`) to directly mutate the DOM node, completely bypassing React's render phase.
