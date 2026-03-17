@@ -1,0 +1,3 @@
+## 2024-05-19 - [Direct DOM Mutation in High-Frequency Animations]
+**Learning:** High-frequency animations (like number counters) can cause excessive React re-renders (~125 per 2-second animation per component). `motion/react` provides an `animate` function that allows us to directly update DOM nodes (e.g., `ref.current.textContent = ...`), completely bypassing React's render cycle for significant performance gains without losing visual fidelity.
+**Action:** Use `animate` directly on DOM nodes instead of storing intermediate animated values in React state when dealing with frequent, temporary UI updates that don't affect application logic.
