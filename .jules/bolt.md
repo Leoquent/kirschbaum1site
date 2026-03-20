@@ -1,0 +1,3 @@
+## 2024-05-24 - React Number Animation Re-Renders
+**Learning:** High-frequency animations inside a React component (like `setInterval` updating state every 16ms to animate numbers) completely freeze the main thread, causing significant input latency and frame drops because it forces React through full reconciliation and commit phases ~60 times a second per component. The impact is catastrophic when multiple of these components mount simultaneously.
+**Action:** Always bypass React entirely for high-frequency DOM updates by mutating node attributes/text directly via Refs inside a `requestAnimationFrame` loop (or using motion's `animate` function combined with `onUpdate`).
