@@ -1,0 +1,3 @@
+## 2026-03-23 - Bypass React Render Cycle for High-Frequency Animations
+**Learning:** High-frequency animations like number counters (`setInterval` + `useState`) cause excessive React re-renders (~60 re-renders per second, per component) while the animation runs, wasting significant CPU cycles and blocking the main thread from other operations.
+**Action:** Always use `motion/react`'s `animate` directly with DOM nodes (e.g., modifying `ref.current.textContent` in the `onUpdate` callback) for rapid visual changes that don't need React's virtual DOM diffing. This bypasses the render cycle completely while preserving the visual effect.
