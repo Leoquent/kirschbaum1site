@@ -1,0 +1,3 @@
+## 2024-05-24 - High-Frequency Animation Re-renders in React
+**Learning:** Using `useState` with `setInterval` for rapid animations (like number counters) triggers a massive amount of React re-renders, causing severe performance overhead, especially when multiple instances are rendered simultaneously (e.g., 500 re-renders over 2 seconds for 4 counters).
+**Action:** Always bypass React's render cycle for high-frequency DOM updates by using direct DOM mutation via tools like Framer Motion's `animate` function (`ref.current.textContent = ...`).
