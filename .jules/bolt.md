@@ -1,0 +1,3 @@
+## 2025-03-05 - Direct DOM Mutation with Framer Motion
+**Learning:** For high-frequency animations like counting up numbers, using React state triggers hundreds of unnecessary re-renders. By combining `framer-motion/react`'s `animate` function with an `onUpdate` callback to directly mutate `ref.current.textContent`, we can completely bypass the React render cycle, resulting in significantly improved performance. Furthermore, `framer-motion` v12 requires the `duration` parameter to be specified in seconds, not milliseconds.
+**Action:** Always prefer direct DOM mutations using `framer-motion` when animating values rapidly or continuously rather than relying on React state updates.
