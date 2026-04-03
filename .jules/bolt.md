@@ -1,0 +1,3 @@
+## 2025-04-03 - [Direct DOM Mutation for High-Frequency React Animations]
+**Learning:** For rapidly updating numbers (e.g., stats counters), using React state `useState` inside a `setInterval` or `requestAnimationFrame` creates severe bottlenecks by triggering React rendering cycles completely unnecessarily for every single increment.
+**Action:** Use `motion/react`'s `animate` function to mutate the `ref.current.textContent` directly. This fully bypasses React rendering while achieving smooth, linear transitions for high-frequency updates. Make sure `duration` is passed in seconds, not milliseconds, for `motion/react` v12.
