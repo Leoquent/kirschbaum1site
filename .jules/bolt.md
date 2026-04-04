@@ -1,0 +1,3 @@
+## 2025-04-04 - React Render Cycle Bypass for High-Frequency Animations
+**Learning:** AnimatedNumber was using `setInterval` to update state every 16ms, causing ~125 React render cycles per counter over a 2-second animation. Given there are 4 counters on the home page, this resulted in ~500 unnecessary re-renders simultaneously, which can cause significant main thread blocking on lower-end devices.
+**Action:** Always prefer direct DOM manipulation (`ref.current.textContent = value`) driven by `requestAnimationFrame` (or Framer Motion's `animate` function) for high-frequency number counters. Avoid triggering React's VDOM diffing for purely visual numerical changes.
