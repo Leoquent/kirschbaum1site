@@ -1,0 +1,3 @@
+## 2024-05-18 - React State in High-Frequency Animations
+**Learning:** Using React state (`useState`) inside a `setInterval` for high-frequency animations (e.g. 60fps number counters) causes continuous re-renders of the component and potentially its children, severely degrading performance and dropping frames. This architecture forces React's reconciler to work overtime.
+**Action:** Use framer-motion's `animate` function with direct DOM manipulation (`ref.current.textContent = value`) bypassing React's render cycle completely for high-frequency visual updates that don't affect application state.
