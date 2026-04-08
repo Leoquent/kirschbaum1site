@@ -1,0 +1,3 @@
+## 2024-05-15 - Framer Motion v12 API Change for animate duration
+**Learning:** In Framer Motion v12, when using the `animate` function directly (e.g. `animate(0, value, { duration: ... })`), the `duration` parameter must be specified in *seconds* (e.g. `2`), unlike some previous versions or standard `setInterval` approaches which use milliseconds (e.g. `2000`). Passing milliseconds causes the animation to essentially stall or run incredibly slowly.
+**Action:** Always verify the expected units for duration parameters when upgrading or using different animation libraries. For Framer Motion v12's `animate`, always use seconds.
