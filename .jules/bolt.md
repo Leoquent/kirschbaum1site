@@ -1,0 +1,3 @@
+## 2024-05-24 - AnimatedNumber Re-render Bottleneck
+**Learning:** Using `useState` and `setInterval` for high-frequency animations (like number counters) causes severe re-render bottlenecks. In `AnimatedNumber`, updating state every 16ms caused ~125 re-renders per component during the 2-second animation, significantly impacting main thread performance.
+**Action:** When creating high-frequency animations, bypass React's render cycle completely. Use `motion/react`'s `animate` function to directly update DOM nodes (e.g., modifying `ref.current.textContent`) with `ease: "linear"`. Always remember to maintain React lifecycle hygiene by returning a cleanup function (`return () => controls.stop()`).
