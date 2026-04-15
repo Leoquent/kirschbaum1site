@@ -1,0 +1,3 @@
+## 2025-02-21 - [Framer Motion Direct DOM Manipulation]
+**Learning:** For high-frequency animations (like number counters from 0 to N over 2 seconds) inside React components, using `setInterval` with `useState` causes a high volume of React re-renders (~125 renders for a 2s animation at 60fps), which can heavily impact performance, especially when multiple such components render simultaneously.
+**Action:** Always prefer `motion/react`'s `animate` function combined with a `ref` to directly update the DOM node (e.g., `ref.current.textContent = ...`). This completely bypasses the React render cycle, dropping re-renders from ~125 down to 1.
