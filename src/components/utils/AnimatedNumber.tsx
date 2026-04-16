@@ -1,27 +1,32 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, animate } from 'motion/react';
 
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
+        if (!isInView || !ref.current) return;
+
+        // ⚡ Bolt Performance Optimization:
+        // By using `animate` with `onUpdate` to directly modify the DOM node's `textContent`,
+        // we completely bypass React's render cycle.
+        // Previously, `useState` and `setInterval` triggered ~60 re-renders per second
+        // per AnimatedNumber instance, which could severely impact performance with multiple instances.
+        const controls = animate(0, value, {
+            duration: 2, // framer-motion uses seconds
+            ease: "linear",
+            onUpdate(currentValue) {
+                if (ref.current) {
+                    ref.current.textContent = Math.floor(currentValue).toString();
+                }
             }
-        }, 16);
-        return () => clearInterval(timer);
+        });
+
+        // Always return a cleanup function to prevent memory leaks and regressions
+        // when the component unmounts during an active animation.
+        return () => controls.stop();
     }, [isInView, value]);
 
-    return <span ref={ref}>{display}</span>;
+    return <span ref={ref}>0</span>;
 };
