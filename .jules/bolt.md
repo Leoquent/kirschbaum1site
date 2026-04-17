@@ -1,0 +1,3 @@
+## 2024-04-17 - [Optimizing AnimatedNumber with direct DOM manipulation]
+**Learning:** High-frequency animations (like number counters) cause massive re-renders when tied to React state. Bypassing the React render cycle completely using `motion/react`'s `animate` function to directly update DOM nodes (e.g., `ref.current.textContent`) yields significant performance improvements without sacrificing animation quality.
+**Action:** Always prefer direct DOM manipulation (`ref.current.textContent`) over React state (`useState`) for high-frequency textual animations, ensuring a cleanup function (`controls.stop()`) is returned in the `useEffect` to prevent memory leaks and React lifecycle issues.
