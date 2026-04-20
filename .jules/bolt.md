@@ -1,0 +1,3 @@
+## 2025-02-27 - [AnimatedNumber Performance]
+**Learning:** Using `useState` for high-frequency animations (like number counters updating every 16ms) causes excessive React re-renders, severely degrading performance.
+**Action:** When animating high-frequency values, use `motion/react`'s `animate` function to directly update DOM nodes (e.g., `ref.current.textContent`), bypassing React's render cycle completely.
