@@ -1,27 +1,30 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, animate } from 'motion/react';
 
+// ⚡ Bolt: Removed React.useState to prevent 120+ unnecessary re-renders per animation instance.
+// We use motion's animate to directly mutate the DOM node's textContent for O(0) React renders during animation.
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
+        if (!isInView || !ref.current) return;
+
+        // Use Framer Motion's animate function.
+        // Note: In Framer Motion v12, duration is in seconds.
+        const controls = animate(0, value, {
+            duration: 2,
+            ease: "linear",
+            onUpdate: (latest) => {
+                if (ref.current) {
+                    ref.current.textContent = Math.floor(latest).toString();
+                }
             }
-        }, 16);
-        return () => clearInterval(timer);
+        });
+
+        // Always return the cleanup function to stop the animation if the component unmounts
+        return () => controls.stop();
     }, [isInView, value]);
 
-    return <span ref={ref}>{display}</span>;
+    return <span ref={ref}>0</span>;
 };
