@@ -1,0 +1,3 @@
+## 2024-03-24 - High-Frequency State Updates Cause Unnecessary Re-renders
+**Learning:** High-frequency animations (like number counters) using `setInterval` and `setState` cause excessive React re-renders (~125 re-renders per counter for a 2s animation), blocking the main thread and impacting performance, especially when multiple counters are mounted at once.
+**Action:** When animating values over time without structural DOM changes, bypass React's render cycle by using `motion/react`'s `animate` function with `ease: "linear"` to directly update DOM nodes (e.g., `ref.current.textContent = value`). Always return `controls.stop()` to clean up the animation.
