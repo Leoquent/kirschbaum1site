@@ -1,0 +1,3 @@
+## 2024-03-05 - [High-Frequency Animation Bottleneck]
+**Learning:** React state updates inside intervals for smooth animations (like number counters) create massive rendering bottlenecks, triggering ~60 re-renders per second per component.
+**Action:** Always use `motion/react`'s `animate` with `onUpdate` to directly modify the DOM node (`ref.current.textContent`), bypassing the React render cycle entirely while preserving 60FPS. Ensure you return `controls.stop()` for cleanup.
