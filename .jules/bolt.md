@@ -1,0 +1,3 @@
+## 2024-04-27 - [High-Frequency React Animations]
+**Learning:** Using `setInterval` with React state for high-frequency animations (like rapid number counters) forces the React component to re-render ~60 times per second per instance. This causes significant main thread blocking when multiple such components are present on screen simultaneously.
+**Action:** Always replace state-based rapid animations with direct DOM manipulation. Use `motion/react`'s `animate` function with `ease: "linear"` to update DOM node properties directly (e.g., modifying `ref.current.textContent`). This completely bypasses the React render cycle while preserving precise animation timing.
