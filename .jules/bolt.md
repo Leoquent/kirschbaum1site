@@ -1,0 +1,3 @@
+## 2024-05-18 - High-Frequency State Animation Anti-Pattern
+**Learning:** Using React state inside `setInterval` for high-frequency numerical animations (like counting up from 0 to 500) causes severe render thrashing. Each state update triggers a full React re-render of the component. For 4 animated numbers on the homepage running at 60fps for 2 seconds, this caused nearly 500 synchronous React render cycles in a short burst, stalling the main thread.
+**Action:** Always use Framer Motion's `animate` utility with `onUpdate` to mutate the `ref.current.textContent` directly. This completely bypasses the React reconciliation cycle, executing at native 60fps while preserving identical UX.
