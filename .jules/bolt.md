@@ -1,0 +1,3 @@
+## 2023-10-24 - [Bypassing React Render Cycle for High-Frequency Animations]
+**Learning:** The `AnimatedNumber` component previously caused ~120 renders per counter due to updating state every 16ms using `setInterval` and `useState`. For multiple counters, this caused hundreds of unnecessary React renders during the 2-second animation. Using `motion/react`'s `animate` function to directly update `ref.current.textContent` completely bypasses the React render cycle, preserving consistent animation speed without blocking the main thread.
+**Action:** Use `motion/react`'s `animate` function to directly manipulate DOM nodes for high-frequency animations (like counters) with `ease: "linear"`, instead of relying on React state updates. Ensure cleanup with `controls.stop()`.
