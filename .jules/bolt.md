@@ -1,0 +1,3 @@
+## 2025-03-01 - Avoid React state for high-frequency animations
+**Learning:** High-frequency animations (like number counters updating every 16ms) implemented with React `useState` cause severe performance degradation due to rapid, continuous re-rendering of the component and its children.
+**Action:** Always use animation libraries like `motion/react` with its `animate` function (and `onUpdate` callback) or native DOM manipulation to bypass React's render cycle completely. Update the DOM node directly via `ref.current.textContent` for purely visual changes. Remember to return a cleanup function (`controls.stop()`) and that Framer Motion v12 uses seconds for duration.
