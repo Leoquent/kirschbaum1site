@@ -1,0 +1,3 @@
+## 2025-03-08 - [High-Frequency Animation DOM Mutations]
+**Learning:** High-frequency animations (like number counters via `setInterval`) using React state (`useState`) trigger excessive re-renders, causing main thread blockages and performance degradation in this codebase, especially when multiple animated counters exist on a page.
+**Action:** Use `motion/react`'s `animate` function to directly update the DOM node's `textContent` inside an `onUpdate` callback (e.g., `ref.current.textContent = ...`). This completely bypasses React's render cycle for every animation tick, preserving performance. Ensure `ease: "linear"` is used for number counters to maintain consistent speed.
