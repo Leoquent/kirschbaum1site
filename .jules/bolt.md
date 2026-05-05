@@ -1,0 +1,3 @@
+## 2024-03-24 - [Bypassing React State for High-Frequency Animations]
+**Learning:** In React, animating values (like numbers counting up) via `useState` and `setInterval` triggers a re-render for every single tick. For a 2-second animation at 60fps, this results in ~120 unnecessary component renders.
+**Action:** Use `motion/react`'s `animate` function coupled with a `ref` (e.g., `ref.current.textContent`) and `ease: "linear"` to directly update the DOM element. This completely bypasses React's render cycle for the duration of the animation, vastly improving performance and main thread utilization. Remember to specify duration in seconds.
