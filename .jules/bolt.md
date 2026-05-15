@@ -1,0 +1,3 @@
+## 2026-05-15 - React Render Cycles in High-Frequency Animations
+**Learning:** Bypassing React render cycles for high-frequency animations (like number counters) by directly mutating DOM nodes (e.g., using `ref.current.textContent` with Framer Motion's `animate`) yields massive performance improvements. Using `useState` and `setInterval` triggers ~125 unnecessary renders per component instance during a typical 2-second animation, which blocks the main thread and hurts performance.
+**Action:** Always use `motion/react`'s `animate` function with `onUpdate` or direct DOM manipulation for continuously changing text values to prevent React re-renders. Use `onComplete` to ensure the final value is correctly set.
