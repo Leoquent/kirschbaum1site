@@ -1,0 +1,3 @@
+## 2026-05-17 - React State vs. Direct DOM Manipulation in High-Frequency Animations
+**Learning:** Using `useState` and `setInterval` for number counters (like in `AnimatedNumber.tsx`) causes ~60 React re-renders per second (or ~120 renders for a 2s animation), severely blocking the main thread. This is a critical anti-pattern for performance when multiple counters exist on screen (like stats on the home page).
+**Action:** Use Framer Motion's `animate` function with `ease: "linear"` to directly update DOM nodes (`ref.current.textContent`), bypassing the React render cycle entirely while preserving consistent animation speed.
