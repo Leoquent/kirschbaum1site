@@ -1,0 +1,3 @@
+## 2026-05-22 - Replacing React State with Direct DOM Updates for High-Frequency Animations
+**Learning:** Frequent state updates (e.g. intervals running at 16ms to animate numbers) cause continuous React re-renders that block the main thread and jank up scroll performance. `motion/react` provides an `animate` function that allows us to bypass React's render cycle completely by directly modifying DOM node textContent in the `onUpdate` callback while preserving the animation's exact timeline and curve.
+**Action:** Always avoid `useState` for rapid, continuous UI updates (like number counters or progress bars). Use direct DOM manipulation with `ref` and `animate` instead. Remember to use seconds for `duration` and return the `controls.stop()` cleanup to avoid memory leaks.
