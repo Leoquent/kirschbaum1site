@@ -1,0 +1,3 @@
+## 2025-02-28 - Avoid React State for High-Frequency Animations
+**Learning:** High-frequency animations, such as a number counter running via `setInterval` or `requestAnimationFrame` using React state (e.g., `setDisplay` every 16ms), trigger an excessive number of component re-renders (in this case, ~125 re-renders per animated number over 2 seconds). This creates significant main thread overhead and can cause jank on lower-end devices.
+**Action:** When animating values that update frequently and don't affect structural layout (like text content), use Framer Motion's `animate` function combined with direct DOM manipulation (`ref.current.textContent = value`). This completely bypasses React's render cycle while still allowing smooth, hardware-accelerated animations.
