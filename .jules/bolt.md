@@ -1,0 +1,3 @@
+## 2026-05-24 - High-Frequency Animation Bottleneck
+**Learning:** Using `setInterval` coupled with React state updates (`setState`) for high-frequency numerical animations (like counting up to a number) causes severe performance degradation due to excessive component re-renders (~125 re-renders per 2-second animation).
+**Action:** Always use a physics-based or specialized animation library's direct DOM manipulation tools (like `framer-motion`'s `animate` function combined with a `ref`) for high-frequency visual updates to bypass React's render cycle completely while preserving smooth animation.
