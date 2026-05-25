@@ -1,0 +1,3 @@
+## 2026-05-25 - Direct DOM manipulation for number animations
+**Learning:** Using React state (`useState`) inside a rapid interval (e.g. `requestAnimationFrame` or `setInterval` every 16ms) to animate numbers causes severe performance bottlenecks due to continuous React re-renders (~125 re-renders per number over 2 seconds). The codebase already uses `motion/react`, which provides an `animate` utility that is perfect for this.
+**Action:** When creating high-frequency animations like counting numbers, use Framer Motion's `animate` function combined with a direct DOM node update (`ref.current.textContent = value`) inside `onUpdate`. This bypasses React's render cycle completely while preserving consistent animation speed.
