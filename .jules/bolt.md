@@ -1,0 +1,3 @@
+## 2026-05-30 - Direct DOM Manipulation for High-Frequency Animations
+**Learning:** React state updates (`useState`) are too slow and resource-intensive for high-frequency animations (like number counters running at 60fps). Updating state via `setInterval` triggers a full component re-render on every frame (e.g., ~125 re-renders for a 2-second animation).
+**Action:** Use `motion/react`'s `animate` function to directly mutate DOM nodes (`ref.current.textContent`) via the `onUpdate` callback. This completely bypasses the React render cycle while maintaining precise animation timing and performance. Always remember to clean up the animation in the `useEffect` return function (`return () => controls.stop();`).
