@@ -1,27 +1,34 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, animate } from 'motion/react';
 
+// ⚡ Bolt Optimization:
+// What: Replaced useState/setInterval with motion's animate + DOM mutation
+// Why: Prevent React re-renders 60 times a second per animated number
+// Impact: Eliminates ~120 renders per component during the 2s animation
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
+        if (!isInView || !ref.current) return;
+
+        const controls = animate(0, value, {
+            duration: 2, // framer-motion uses seconds
+            ease: "linear",
+            onUpdate(latest) {
+                if (ref.current) {
+                    ref.current.textContent = Math.floor(latest).toString();
+                }
+            },
+            onComplete() {
+                if (ref.current) {
+                    ref.current.textContent = value.toString();
+                }
             }
-        }, 16);
-        return () => clearInterval(timer);
+        });
+
+        return () => controls.stop();
     }, [isInView, value]);
 
-    return <span ref={ref}>{display}</span>;
+    return <span ref={ref}>0</span>;
 };
