@@ -1,0 +1,3 @@
+## 2026-06-04 - Eliminate React re-renders in number counters
+**Learning:** High-frequency state updates in React (like using `setInterval` and `useState` to increment numbers for an animation effect) cause massive unnecessary re-renders. `AnimatedNumber.tsx` was doing exactly this, potentially triggering ~60 renders per second per counter during its 2000ms duration.
+**Action:** Use `motion/react`'s `animate` function on a `useRef` to directly manipulate the DOM element's `textContent`. This completely bypasses the React render cycle, dropping re-renders from ~120 to 1 per counter component, while keeping the animation buttery smooth. Always use `onComplete` in Framer Motion to ensure the final value is set perfectly.
