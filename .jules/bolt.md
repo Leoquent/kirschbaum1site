@@ -1,0 +1,3 @@
+## 2026-06-07 - React Render Bypass for High-Frequency Animations
+**Learning:** High-frequency animations (like number counters via `setInterval`) using React state (`useState`) trigger hundreds of unnecessary and expensive render cycles per component instance.
+**Action:** Use Framer Motion's `animate` function combined with `onUpdate` to directly modify the DOM node's `textContent` via `ref`, completely bypassing React's rendering cycle for a massive performance gain. Ensure the exact final value is set using the `onComplete` callback and use React lifecycle cleanup (`controls.stop()`) to avoid memory leaks.
