@@ -1,0 +1,3 @@
+## 2026-06-08 - [Framer Motion High-Frequency Animation]
+**Learning:** Using `useState` and `setInterval` for high-frequency animations like number counters causes excessive React re-renders (e.g., 60 times a second), which creates performance bottlenecks.
+**Action:** Use Framer Motion's `animate` function to directly update the DOM node's `textContent` (e.g., `ref.current.textContent = value`). This bypasses React's render loop entirely, providing a significant performance boost for animated numbers while keeping the same visual effect.
