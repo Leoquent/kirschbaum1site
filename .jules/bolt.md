@@ -1,0 +1,3 @@
+## 2026-06-10 - [Bypassing React Renders for High-Frequency Animations]
+**Learning:** For high-frequency animations like counting numbers, using React state (`useState` + `setInterval`) causes excessive and unnecessary re-renders (~60 re-renders per second per animated component).
+**Action:** When animating values that only need to be displayed (like a counter), use Framer Motion's `animate` function combined with direct DOM manipulation (`ref.current.textContent = value`). This entirely bypasses the React render cycle, significantly improving performance while preserving exact functionality. Ensure `controls.stop()` is used in the cleanup function to prevent memory leaks or regressions on unmount.
