@@ -1,0 +1,3 @@
+## 2026-06-13 - [Direct DOM manipulation for high-frequency animations]
+**Learning:** Using React state (e.g., `useState`) for high-frequency animations like number counters causes excessive component re-renders on every frame (e.g. 60+ times per second). For a `AnimatedNumber` component, this drastically slows down performance and could lead to jank in UI.
+**Action:** Instead of relying on React's render cycle for animations, use `motion/react`'s `animate` function directly on a DOM node reference (`ref.current.textContent`). This bypasses the React render loop and ensures smooth, performant 60fps animations. Always maintain React lifecycle hygiene by returning a cleanup function to stop the animation (e.g., `return controls.stop;`) to avoid memory leaks or issues.
