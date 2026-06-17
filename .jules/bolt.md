@@ -1,0 +1,3 @@
+## 2026-06-17 - [Optimizing high-frequency animations with Framer Motion]
+**Learning:** In React components that perform high-frequency visual updates (like an animating number counter going from 0 to 500 over 2 seconds), using standard React state (`useState`) and `setInterval` triggers over 125 full component re-renders (at 60fps), which can cause stuttering and impact overall page performance when multiple counters exist.
+**Action:** When animating text nodes frequently, bypass the React render cycle entirely by utilizing Framer Motion's `animate` function combined with direct DOM node manipulation (e.g. `ref.current.textContent = value`). Remember to handle cleanup (`controls.stop()`) to avoid memory leaks.
