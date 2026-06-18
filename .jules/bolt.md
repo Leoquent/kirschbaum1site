@@ -1,0 +1,3 @@
+## 2026-06-18 - [Optimized AnimatedNumber Rendering]
+**Learning:** Frequent small state updates for animations (e.g. `setInterval` driving `useState` 60 times a second) cause severe performance issues due to excessive React re-renders, especially when multiple such components exist on a single page.
+**Action:** Always prefer direct DOM manipulation for high-frequency animations (like number counters) using libraries built for this purpose (like Framer Motion's `animate` function referencing `ref.current.textContent`) to bypass the React render cycle completely while keeping consistent speed and memory safety.
