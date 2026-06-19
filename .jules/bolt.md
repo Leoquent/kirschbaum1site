@@ -1,0 +1,3 @@
+## 2026-06-19 - [Direct DOM Mutation for Frequent Animations]
+**Learning:** Frequent animations like number counters cause continuous React re-renders when using `useState` and `setInterval`. This is a codebase-specific performance pattern to avoid, particularly because this project relies heavily on `motion/react`.
+**Action:** When animating values over time (especially rapidly changing values), use `motion/react`'s `animate` function inside a `useEffect` to directly mutate DOM text content (`ref.current.textContent`). Ensure to return a cleanup function (`controls.stop()`) to maintain proper lifecycle hygiene.
