@@ -1,0 +1,3 @@
+## 2026-06-25 - React Re-renders in High-Frequency Animations
+**Learning:** Using `setInterval` with React state (`useState`) to update a number value 60 times a second causes unnecessary, expensive re-renders of the component tree. This happens because React's render lifecycle is triggered on every state update, which is highly inefficient for simple text changes like counters, degrading performance on lower-end devices and causing main-thread stuttering.
+**Action:** Use Framer Motion's `animate` function combined with a direct DOM node ref (`ref.current.textContent`) to handle high-frequency text changes. This updates the DOM directly outside of the React render cycle, preserving smooth animation at a constant 60fps without causing React to re-render the component.
