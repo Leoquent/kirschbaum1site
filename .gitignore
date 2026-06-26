@@ -31,3 +31,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# jules logs
+vite_output.log
+npm_output.log
+screenshot.png

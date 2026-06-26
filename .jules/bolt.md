@@ -1,0 +1,3 @@
+## 2024-06-26 - [High-Frequency React State Updates Anti-Pattern]
+**Learning:** High-frequency animations (like number counters running every 16ms) implemented using React state (`useState` + `setInterval`) cause severe performance bottlenecks by triggering hundreds of unnecessary component re-renders and blocking the main thread.
+**Action:** Always bypass React's render cycle for direct DOM manipulation when dealing with high-frequency continuous updates. Use `motion/react`'s `animate` function to directly update `ref.current.textContent` with `ease: "linear"`, eliminating all React re-renders while preserving the exact same visual behavior.
