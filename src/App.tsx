@@ -2,14 +2,21 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
-// Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+// ⚡ Bolt Performance Optimization:
+// Replaced static imports with React.lazy() code splitting.
+// Impact: Reduces initial Javascript bundle size significantly by splitting
+// each route into its own separate chunk, leading to faster First Contentful
+// Paint (FCP) and quicker Time to Interactive (TTI).
+// Using named export pattern wrapping to support our file exports.
+const Home = React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const About = React.lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const Contact = React.lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const Services = React.lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
+const References = React.lazy(() => import('./pages/References').then(module => ({ default: module.References })));
+const Impressum = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Impressum })));
+const Datenschutz = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Datenschutz })));
+const AGB = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.AGB })));
+const NotFound = React.lazy(() => import('./NotFound'));
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -20,7 +27,8 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
+      <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
@@ -38,9 +46,10 @@ export default function App() {
         <Route path="/datenschutz" element={<Datenschutz />} />
         <Route path="/agb" element={<AGB />} />
 
-        {/* Fallback */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* Fallback */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </React.Suspense>
     </Router>
   );
 }

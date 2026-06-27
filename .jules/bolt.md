@@ -1,0 +1,3 @@
+## 2026-06-27 - Dynamic Route Code Splitting with Named Exports Wrapper
+**Learning:** For React applications using Vite where the files expose multiple named exports (e.g. `export const Home = () => ...`) instead of default exports, `React.lazy` cannot import them directly. They must be wrapped with a `.then()` block that maps the named export to `default` (e.g. `import('./pages/Home').then(module => ({ default: module.Home }))`). This prevents throwing import errors for lazy-loaded modules.
+**Action:** Always inspect the target file's exports before applying `React.lazy`. If `default` is not used, write a manual module mapping using the `.then(module => ({ default: module.ExportName }))` pattern.
