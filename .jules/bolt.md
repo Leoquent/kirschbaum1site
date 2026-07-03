@@ -1,0 +1,3 @@
+## 2026-07-03 - [Direct DOM manipulation for high-frequency animations]
+**Learning:** High-frequency animations (like number counters) using `useState` and `setInterval` in React components cause excessive re-renders (e.g., 60fps), degrading performance. Using `motion/react`'s `animate` function to directly update DOM nodes (e.g., `ref.current.textContent`) bypasses the React render cycle completely.
+**Action:** When animating values frequently in a component, avoid state updates. Use a ref and a library like Framer Motion's `animate` function to manually update the DOM content, ensuring to return a cleanup function (`controls.stop()`) to prevent memory leaks.
