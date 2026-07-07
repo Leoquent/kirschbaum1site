@@ -1,0 +1,3 @@
+## 2024-07-07 - Optimize React Rendering for High-Frequency Animations
+**Learning:** For high-frequency animations like number counters, repeatedly updating React state (e.g., using `setInterval` and `setState`) forces the entire component to re-render on every tick (every 16ms), causing severe performance degradation, especially if the component is large or complex.
+**Action:** Use a library like `motion/react` with the `animate` function to directly update the DOM node's `textContent` via a ref. This completely bypasses the React render cycle, preserving consistent animation speed while drastically reducing CPU usage and unneeded re-renders.
