@@ -1,0 +1,3 @@
+## 2026-07-08 - AnimatedNumber state-based re-render
+**Learning:** Found a performance bottleneck where `AnimatedNumber` was using `setInterval` to trigger state updates every 16ms, causing excessive React re-renders for the entire component tree.
+**Action:** Replaced React state (`useState`) with Framer Motion's `animate` function to directly update the DOM element's `textContent`. This bypasses React's render cycle completely while preserving consistent animation speed.
