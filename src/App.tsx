@@ -3,12 +3,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
 // Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
+import { Suspense, lazy } from 'react';
+
+// Lazy loaded pages for code splitting
+const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const Services = lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
+const References = lazy(() => import('./pages/References').then(module => ({ default: module.References })));
+const Impressum = lazy(() => import('./pages/Legal').then(module => ({ default: module.Impressum })));
+const Datenschutz = lazy(() => import('./pages/Legal').then(module => ({ default: module.Datenschutz })));
+const AGB = lazy(() => import('./pages/Legal').then(module => ({ default: module.AGB })));
 import NotFound from './NotFound';
 
 // Temporary placeholders for sub-services and career
@@ -20,7 +25,8 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
@@ -41,6 +47,7 @@ export default function App() {
         {/* Fallback */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </Router>
   );
 }
