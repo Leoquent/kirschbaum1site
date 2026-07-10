@@ -1,0 +1,3 @@
+## 2026-07-10 - React.lazy with Named Exports
+**Learning:** This codebase primarily uses named exports for its page components (e.g., `export const About = ...`) rather than `export default`. When using `React.lazy()` for code splitting, it expects a default export. A straightforward `React.lazy(() => import('./pages/About'))` will fail.
+**Action:** Always map the named export to a default export using `.then()` when implementing route-based code splitting in this project: `React.lazy(() => import('./pages/About').then(module => ({ default: module.About })))`.
