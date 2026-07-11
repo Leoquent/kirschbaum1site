@@ -1,0 +1,3 @@
+## 2026-07-11 - React.lazy with named exports
+**Learning:** When implementing React.lazy() for code splitting in a React application where page components use named exports (e.g., `export const Home = ...`) instead of `export default`, you cannot simply do `React.lazy(() => import('./pages/Home'))`. This will crash because React.lazy expects a default export.
+**Action:** Use an explicit mapping to the default property when resolving the promise: `React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })))`. This correctly adapts named exports to the format required by React.lazy.
