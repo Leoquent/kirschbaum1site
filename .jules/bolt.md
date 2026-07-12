@@ -1,0 +1,3 @@
+## 2024-05-24 - Unnecessary Re-renders in High-Frequency Animations
+**Learning:** Using React's `useState` within a `setInterval` or `requestAnimationFrame` loop for rapid visual updates (like a number counter animating from 0 to 500 over 2 seconds at 60fps) forces React to re-render the component and potentially its children hundreds of times, causing significant performance overhead and main thread blocking.
+**Action:** For high-frequency, non-interactive visual animations, bypass React's render cycle completely. Use direct DOM manipulation via `ref.current.textContent` driven by an animation library like `motion/react`'s `animate` function. This offloads the animation work from React's diffing engine, maintaining a smooth 60fps without causing React re-renders.
