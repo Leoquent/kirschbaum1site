@@ -1,0 +1,3 @@
+## 2026-07-13 - Number Counter Animation Performance
+**Learning:** Using `setInterval` and `useState` inside a `useEffect` for high-frequency animations (like number counters) causes severe re-render overhead. This is a common performance anti-pattern.
+**Action:** Use Framer Motion's `animate` function to directly update DOM nodes (e.g., `ref.current.textContent`) with `ease: "linear"`, bypassing React's render cycle completely. This ensures high performance and consistent animation speed without flooding the component with state updates. When dealing with numbers, also make sure to use `onComplete` to set the exact final value.
