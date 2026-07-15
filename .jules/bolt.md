@@ -1,0 +1,3 @@
+## 2026-07-15 - Code Splitting Implementation
+**Learning:** When implementing React.lazy() for code splitting in this application, note that most page components use named exports (e.g., `export const Home`) instead of default exports, requiring explicit mapping to default: `React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })))`. Additionally, the fallback `<Suspense>` wrapper should utilize the existing `<Layout isStatic={true}>` component to prevent jarring layout shifts (disappearing headers/footers) while the chunks fetch.
+**Action:** Always map named exports to default when using React.lazy, and always wrap the Suspense fallback in the application's persistent layout container to preserve UX during load states.
