@@ -1,0 +1,3 @@
+## 2024-05-18 - Route-based Code Splitting
+**Learning:** The React application was loading all route components (Home, About, Services, etc.) in the main bundle `index-BDo5iTEA.js` which was ~477KB. By wrapping route components in `React.lazy()` and `Suspense`, Vite automatically creates separate chunks for each route, reducing the main bundle size significantly to ~376KB and resulting in faster initial page loads for users.
+**Action:** Always consider route-based code splitting for Single Page Applications (SPAs) with multiple distinct pages that users may not visit immediately, to keep the initial JS payload small.
