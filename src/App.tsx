@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
 // Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+// ⚡ Bolt: Route-level code splitting
+// What: Dynamically import page components using React.lazy()
+// Why: Reduces the initial main bundle size by splitting each page into its own chunk.
+// Impact: Decreases initial TTI (Time to Interactive) by preventing the loading of unnecessary page code upfront.
+const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const Contact = lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const Services = lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
+const References = lazy(() => import('./pages/References').then(module => ({ default: module.References })));
+const Impressum = lazy(() => import('./pages/Legal').then(module => ({ default: module.Impressum })));
+const Datenschutz = lazy(() => import('./pages/Legal').then(module => ({ default: module.Datenschutz })));
+const AGB = lazy(() => import('./pages/Legal').then(module => ({ default: module.AGB })));
+const NotFound = lazy(() => import('./NotFound'));
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -20,6 +26,7 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
+      <Suspense fallback={<div className="h-screen w-full flex items-center justify-center bg-gray-50 text-primary font-display text-2xl">Laden...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
@@ -41,6 +48,7 @@ export default function App() {
         {/* Fallback */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </Router>
   );
 }
