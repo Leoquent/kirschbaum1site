@@ -1,0 +1,3 @@
+## 2026-07-26 - Replace React State with Direct DOM Manipulation for High-Frequency Animations
+**Learning:** High-frequency `setInterval` updates in React (e.g. 60fps for 2 seconds) using `useState` trigger excessive re-renders (125+ for a 2-second animation at 16ms intervals), blocking the main thread and degrading UI performance, particularly when multiple components run concurrently.
+**Action:** When animating values frequently (like number counters), use `motion/react`'s `animate` function combined with a `ref` to directly update the DOM element's text content (`ref.current.textContent`). This completely bypasses the React render cycle while preserving animation accuracy. Ensure initial render contains a default value and `onComplete` sets the exact final value.
