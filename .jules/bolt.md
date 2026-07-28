@@ -1,0 +1,3 @@
+## 2026-07-28 - [Eliminating React Re-renders in High-Frequency Animations]
+**Learning:** Using `setInterval` with `useState` for rapid animations (like number counters in `AnimatedNumber.tsx`) causes hundreds of unnecessary React component re-renders per second, significantly impacting frontend performance.
+**Action:** When implementing high-frequency animations on static values (like counters), use `motion/react`'s `animate` function with direct DOM manipulation (e.g., updating `ref.current.textContent` inside `onUpdate` and `onComplete`) to bypass the React render cycle completely.
