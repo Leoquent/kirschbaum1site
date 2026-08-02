@@ -1,0 +1,3 @@
+## 2026-08-02 - Code Splitting Implementation
+**Learning:** When implementing React.lazy() for code splitting in this application, note that most page components use named exports (e.g., `export const Home`) instead of default exports, requiring explicit mapping to default: `React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })))`. Unlike most other page components, `src/NotFound.tsx` uses a default export (`export default function NotFound()`) and requires standard default import mapping.
+**Action:** When migrating synchronous component imports to dynamic lazy imports, inspect the target files for export types and adapt the dynamic import wrapper accordingly to avoid rendering failures.
