@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
-// Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+// Performance Optimization: Implement code splitting via React.lazy
+// This splits the application into smaller chunks, reducing the initial JavaScript payload
+// Expected impact: Faster Initial Page Load time and smaller main bundle size
+const Home = React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const About = React.lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const Contact = React.lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const Services = React.lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
+const References = React.lazy(() => import('./pages/References').then(module => ({ default: module.References })));
+const Impressum = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Impressum })));
+const Datenschutz = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Datenschutz })));
+const AGB = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.AGB })));
+const NotFound = React.lazy(() => import('./NotFound'));
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -17,30 +21,39 @@ const Bath = () => <Layout isStatic={true}><div className="pt-40 p-10 text-cente
 const Heating = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Heizung & Energie - In Kürze mehr...</div></Layout>;
 const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Klima & Lüftung - In Kürze mehr...</div></Layout>;
 
+// Loading fallback
+const PageLoader = () => (
+  <div className="flex items-center justify-center h-screen w-full bg-white">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D32F2F]"></div>
+  </div>
+);
+
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ueber-uns" element={<About />} />
-        <Route path="/karriere" element={<Career />} />
-        <Route path="/kontakt" element={<Contact />} />
-        <Route path="/referenzen" element={<References />} />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ueber-uns" element={<About />} />
+          <Route path="/karriere" element={<Career />} />
+          <Route path="/kontakt" element={<Contact />} />
+          <Route path="/referenzen" element={<References />} />
 
-        {/* Services */}
-        <Route path="/leistungen" element={<Services />} />
-        <Route path="/leistungen/bad" element={<Bath />} />
-        <Route path="/leistungen/heizung" element={<Heating />} />
-        <Route path="/leistungen/klima" element={<AC />} />
+          {/* Services */}
+          <Route path="/leistungen" element={<Services />} />
+          <Route path="/leistungen/bad" element={<Bath />} />
+          <Route path="/leistungen/heizung" element={<Heating />} />
+          <Route path="/leistungen/klima" element={<AC />} />
 
-        {/* Legal */}
-        <Route path="/impressum" element={<Impressum />} />
-        <Route path="/datenschutz" element={<Datenschutz />} />
-        <Route path="/agb" element={<AGB />} />
+          {/* Legal */}
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/agb" element={<AGB />} />
 
-        {/* Fallback */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* Fallback */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
