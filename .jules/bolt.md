@@ -1,0 +1,3 @@
+## 2025-02-27 - Direct DOM manipulation for high-frequency animations
+**Learning:** React state updates for fast animations (like a 60fps number counter) cause excessive re-renders and can degrade performance. Using Framer Motion's `animate` function to update `ref.current.textContent` directly bypasses the React render cycle, resulting in massive performance gains.
+**Action:** Always use direct DOM updates (`ref.current.textContent`) with `animate` instead of `useState`/`setInterval` for frequent number counting or similar continuous simple text changes. Ensure the initial state is rendered correctly and use `onComplete` to set the exact final value.
