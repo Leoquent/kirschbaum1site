@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
 // Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+const Home = React.lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
+const About = React.lazy(() => import('./pages/About').then(m => ({ default: m.About })));
+const Contact = React.lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
+const Services = React.lazy(() => import('./pages/Services').then(m => ({ default: m.Services })));
+const References = React.lazy(() => import('./pages/References').then(m => ({ default: m.References })));
+const Impressum = React.lazy(() => import('./pages/Legal').then(m => ({ default: m.Impressum })));
+const Datenschutz = React.lazy(() => import('./pages/Legal').then(m => ({ default: m.Datenschutz })));
+const AGB = React.lazy(() => import('./pages/Legal').then(m => ({ default: m.AGB })));
+const NotFound = React.lazy(() => import('./NotFound'));
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -20,7 +22,8 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
@@ -41,6 +44,7 @@ export default function App() {
         {/* Fallback */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+        </Suspense>
     </Router>
   );
 }
