@@ -1,0 +1,3 @@
+## 2026-08-07 - Optimize React high-frequency animations
+**Learning:** High-frequency animations (like number counters) implemented with `setInterval` and `useState` trigger excessive React re-renders, causing significant overhead. React's render cycle isn't built for 60fps local state updates just to change text.
+**Action:** Use Framer Motion's `animate` function (part of `motion/react`) with an `onUpdate` callback to directly mutate the DOM node's `textContent`. This completely bypasses the React render cycle, dropping re-renders to zero during the animation while maintaining visual consistency.
