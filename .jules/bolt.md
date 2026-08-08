@@ -1,0 +1,3 @@
+## 2025-02-27 - Optimizing high-frequency text animations with motion/react
+**Learning:** React state-based animations (like `setInterval` updating state every 16ms) cause excessive re-renders that can tank performance, especially with multiple components.
+**Action:** When animating values that update frequently (like numbers), use `motion/react`'s `animate` function to directly update the DOM (`ref.current.textContent`) to bypass React's render cycle completely while retaining visual fidelity.
