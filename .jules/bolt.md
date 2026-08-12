@@ -1,0 +1,3 @@
+## 2026-08-12 - Layout Thrashing with Suspense Fallbacks
+**Learning:** In applications where individual page components render the global layout (e.g., `<Layout>`) rather than having a top-level layout component wrapping the `<Routes>`, implementing route-level code splitting with `<Suspense>` causes the entire layout (header/footer) to unmount during the loading state if the fallback UI doesn't include the layout.
+**Action:** When adding route-level `<Suspense>` boundaries in such architectures, always ensure the `fallback` prop UI is wrapped in the layout component (e.g., `<Layout isStatic={true}>...Laden...</Layout>`) to prevent severe layout thrashing and maintain a consistent user experience during lazy loading.
