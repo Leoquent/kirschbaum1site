@@ -1,0 +1,3 @@
+## 2026-08-13 - Code Splitting Route Components
+**Learning:** The application was loading all route components (pages) in a single massive JS bundle. Implementing `React.lazy` on page routes successfully split the bundles for faster time-to-interactive. We also learned that almost all route components are named exports, requiring explicit mapping to default (`.then(module => ({ default: module.Home }))`), and that the Suspense fallback UI must be wrapped in `<Layout isStatic={true}>` to prevent the header/footer from disappearing during loading.
+**Action:** Always check the root router for monolithic imports of page components. Ensure we use named exports mapping if no default export is provided, and maintain layout structure during Suspense fallbacks.
