@@ -1,0 +1,3 @@
+## 2026-08-15 - [Suspense Fallback with Layout Components]
+**Learning:** In this application's architecture, page components individually render the `<Layout>` component. When implementing route-level boundaries (e.g., `<Suspense>` fallbacks for `React.lazy`), the fallback UI must also be wrapped in the `<Layout>` component (e.g., `<Layout isStatic={true}>...`). Otherwise, the header and footer will disappear during the loading state, leading to a jarring user experience.
+**Action:** When adding route-level code splitting or suspense boundaries, always ensure the `fallback` prop includes the common layout wrappers used by the children components.
