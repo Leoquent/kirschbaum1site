@@ -1,0 +1,3 @@
+## 2026-08-16 - Optimize React Render Cycle in High-Frequency Animations
+**Learning:** Frequent React state updates for continuous animations (like number counters via `setInterval`) cause significant render overhead (e.g., 60fps renders for multiple seconds). Direct DOM manipulation using Framer Motion's `animate` function combined with a `useRef` provides a massive performance boost by entirely bypassing React's render cycle for these updates.
+**Action:** Always prefer direct DOM updates (e.g., updating `ref.current.textContent`) for simple value animations instead of tying the animation progress to React state. Ensure proper cleanup (like `controls.stop()`) is maintained.
