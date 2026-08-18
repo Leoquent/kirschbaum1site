@@ -1,0 +1,3 @@
+## 2026-08-18 - [Optimized Number Counter Animation]
+**Learning:** Using React state for high-frequency animations (like number counters via `setInterval`) causes unnecessary re-renders. Bypassing the React render cycle using Framer Motion's `animate` function directly on the DOM node's `textContent` results in a significantly smoother and more performant animation without dropping frames or blocking the main thread.
+**Action:** Always favor direct DOM manipulation (`ref.current.textContent`) combined with Framer Motion's imperative `animate` function over React state changes for animations that update rapidly (e.g. counters, rapid scrubbers).
