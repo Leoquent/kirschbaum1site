@@ -1,0 +1,3 @@
+## 2026-08-20 - [React.lazy implementation architecture]
+**Learning:** When implementing route-level code splitting with React.lazy() and Suspense in this architecture, the Suspense fallback must also be wrapped in the `<Layout>` component. Individual page components render the layout themselves, so failing to wrap the fallback causes the navigation header to disappear during loading. Also most components use named exports which must be mapped to default.
+**Action:** Always wrap Suspense fallback in `<Layout isStatic={true}>` to maintain consistent header/footer rendering, and explicitly map named exports for React.lazy().
