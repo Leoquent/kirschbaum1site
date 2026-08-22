@@ -1,0 +1,3 @@
+## 2026-08-22 - Bypass React Render Cycle for High-Frequency Animations
+**Learning:** Using React state (e.g., `useState`) inside an animation loop (like a `setInterval` running every 16ms) triggers continuous React re-renders. This is highly inefficient for simple animations like a number counter.
+**Action:** Use `motion/react`'s `animate` function to directly update the DOM element's text content (e.g., `ref.current.textContent`) outside the React render cycle, preserving performance while maintaining the visual animation effect. Always provide a fallback initial render state (e.g., 0) and use `onComplete` for the final exact value.
