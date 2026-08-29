@@ -1,0 +1,3 @@
+## 2026-08-29 - Code Splitting Routes for Bundle Size Reduction
+**Learning:** The application currently imports all page components (Home, About, Services, etc.) synchronously in `src/App.tsx`. Since some of these pages (like Home and References) contain significant amounts of content, animations, and static data, this leads to a monolithic bundle size, delaying the initial load time.
+**Action:** Implement route-level code splitting using `React.lazy` and `Suspense` for all page-level components to ensure users only download the JavaScript necessary for the route they are visiting. Remember to wrap the Suspense fallback in the application's `<Layout>` to prevent UI jumping.
