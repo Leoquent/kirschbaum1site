@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
-// Pages
+// ⚡ Bolt Optimization: Lazy load route components to reduce initial main bundle size
+// We keep Home synchronously loaded to prevent initial load delays
 import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+
+const About = React.lazy(() => import('./pages/About').then(module => ({ default: module.About })));
+const Contact = React.lazy(() => import('./pages/Contact').then(module => ({ default: module.Contact })));
+const Services = React.lazy(() => import('./pages/Services').then(module => ({ default: module.Services })));
+const References = React.lazy(() => import('./pages/References').then(module => ({ default: module.References })));
+const Impressum = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Impressum })));
+const Datenschutz = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.Datenschutz })));
+const AGB = React.lazy(() => import('./pages/Legal').then(module => ({ default: module.AGB })));
+const NotFound = React.lazy(() => import('./NotFound'));
+
+const PageLoader = () => (
+  <Layout isStatic={true}>
+    <div className="pt-40 p-10 flex justify-center items-center h-[80vh]">
+      <div className="w-12 h-12 border-4 border-primary/20 border-t-accent rounded-full animate-spin" />
+    </div>
+  </Layout>
+);
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -20,8 +32,9 @@ const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center 
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
         <Route path="/kontakt" element={<Contact />} />
@@ -39,8 +52,9 @@ export default function App() {
         <Route path="/agb" element={<AGB />} />
 
         {/* Fallback */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
