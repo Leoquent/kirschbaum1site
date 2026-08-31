@@ -1,0 +1,3 @@
+## 2026-08-31 - Route-level Suspense Fallback Architecture
+**Learning:** In this application, page components individually render the `<Layout>` component. Therefore, when implementing route-level boundaries like `<Suspense>` fallbacks for `React.lazy()`, the fallback UI must also be wrapped in `<Layout isStatic={true}>` to prevent the header and footer from disappearing during the loading state.
+**Action:** When implementing code splitting or global route wrappers, always wrap fallback or intermediate states with `<Layout isStatic={true}>` to maintain consistent page structure.
