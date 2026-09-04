@@ -1,0 +1,3 @@
+## 2024-09-04 - Code splitting React Router with named exports
+**Learning:** Implementing React.lazy() for route code splitting requires explicit mapping to default exports when components use named exports (e.g., `export const About`). Additionally, when route-level boundaries (like `<Suspense>` fallbacks) are used in an app where pages individually render the `<Layout>`, the fallback UI must also be wrapped in the `<Layout>` component to prevent the header and footer from disappearing during the loading state.
+**Action:** Always map named exports to default when using React.lazy, and always wrap Suspense fallbacks in the global layout if the architecture dictates page-level layout wrapping.
