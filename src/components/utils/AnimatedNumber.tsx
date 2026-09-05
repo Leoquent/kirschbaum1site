@@ -1,27 +1,32 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { useInView } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
+import { useInView, animate } from 'motion/react';
 
 export const AnimatedNumber = ({ value }: { value: number }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLSpanElement>(null);
     const isInView = useInView(ref, { once: true });
-    const [display, setDisplay] = useState(0);
 
     useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const duration = 2000;
-        const step = value / (duration / 16);
-        const timer = setInterval(() => {
-            start += step;
-            if (start >= value) {
-                setDisplay(value);
-                clearInterval(timer);
-            } else {
-                setDisplay(Math.floor(start));
+        if (!isInView || !ref.current) return;
+
+        // ⚡ Bolt Optimization:
+        // Bypassing React state (useState) and using Framer Motion's direct DOM mutation (animate)
+        // Avoids triggering unnecessary React re-renders on every animation frame.
+        const controls = animate(0, value, {
+            duration: 2,
+            onUpdate(latest) {
+                if (ref.current) {
+                    ref.current.textContent = Math.floor(latest).toString();
+                }
+            },
+            onComplete() {
+                if (ref.current) {
+                    ref.current.textContent = value.toString();
+                }
             }
-        }, 16);
-        return () => clearInterval(timer);
+        });
+
+        return () => controls.stop();
     }, [isInView, value]);
 
-    return <span ref={ref}>{display}</span>;
+    return <span ref={ref}>0</span>;
 };

@@ -1,0 +1,3 @@
+## YYYY-MM-DD - React Render Bottleneck in Animations
+**Learning:** Using setInterval with useState for rapid animations like number counters causes severe re-render cascading. In Framer Motion environments, using the animate function directly on a DOM node via ref is significantly more efficient.
+**Action:** Always bypass React state and use Framer Motion's animate on ref.current.textContent for rapid, continuous visual updates, ensuring controls.stop() is returned for cleanup and exact values are set in onComplete.
