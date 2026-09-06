@@ -1,0 +1,3 @@
+## 2026-09-06 - Route-Level Code Splitting with Named Exports and Layouts
+**Learning:** In this application's architecture, page components use named exports which require explicit mapping when using `React.lazy` (e.g., `then(module => ({ default: module.Home }))`). Furthermore, since each page individually renders the `<Layout>` component, any `<Suspense>` fallback must also be wrapped in `<Layout isStatic={true}>` to prevent the header and footer from disappearing during the loading state.
+**Action:** When implementing code splitting for routes in this project, explicitly map named exports to defaults and ensure `<Suspense>` fallbacks are wrapped in the `<Layout>` component to maintain UI consistency.
