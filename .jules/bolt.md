@@ -1,0 +1,3 @@
+## 2026-09-07 - [Bypassing React State for Animations]
+**Learning:** Using `useState` inside a `setInterval` for 60fps animations triggers massive unnecessary React re-renders. Framer Motion's `animate` function combined with direct DOM `textContent` manipulation completely bypasses the React render cycle while still achieving smooth animations.
+**Action:** When animating values that update frequently (like counting numbers), always manipulate the DOM directly using `ref.current.textContent` with an animation library rather than storing the intermediate values in React state. Ensure the initial render includes the default text (e.g., `<span ref={ref}>0</span>`).
