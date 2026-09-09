@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 
 // Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-import { Services } from './pages/Services';
-import { References } from './pages/References';
-import { Impressum, Datenschutz, AGB } from './pages/Legal';
-import NotFound from './NotFound';
+// Lazy load Pages (Bolt Optimization: Code Splitting)
+const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
+const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
+const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
+const Services = lazy(() => import('./pages/Services').then(m => ({ default: m.Services })));
+const References = lazy(() => import('./pages/References').then(m => ({ default: m.References })));
+const Impressum = lazy(() => import('./pages/Legal').then(m => ({ default: m.Impressum })));
+const Datenschutz = lazy(() => import('./pages/Legal').then(m => ({ default: m.Datenschutz })));
+const AGB = lazy(() => import('./pages/Legal').then(m => ({ default: m.AGB })));
+const NotFound = lazy(() => import('./NotFound'));
 
 // Temporary placeholders for sub-services and career
 const Career = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Karriere - In Kürze mehr...</div></Layout>;
@@ -17,10 +20,20 @@ const Bath = () => <Layout isStatic={true}><div className="pt-40 p-10 text-cente
 const Heating = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Heizung & Energie - In Kürze mehr...</div></Layout>;
 const AC = () => <Layout isStatic={true}><div className="pt-40 p-10 text-center text-primary h-[80vh] italic font-display text-4xl">Klima & Lüftung - In Kürze mehr...</div></Layout>;
 
+// Fallback UI wrapped in Layout to prevent header/footer flickering during chunk loading
+const SuspenseFallback = () => (
+  <Layout isStatic={true}>
+    <div className="min-h-screen flex items-center justify-center font-display text-primary text-2xl">
+      Lade...
+    </div>
+  </Layout>
+);
+
 export default function App() {
   return (
     <Router basename="/kirschbaum1site">
-      <Routes>
+      <Suspense fallback={<SuspenseFallback />}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ueber-uns" element={<About />} />
         <Route path="/karriere" element={<Career />} />
@@ -40,7 +53,8 @@ export default function App() {
 
         {/* Fallback */}
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
