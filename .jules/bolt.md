@@ -1,0 +1,3 @@
+## 2024-03-24 - React.lazy Code Splitting Route Boundary
+**Learning:** When adding `React.lazy` and `Suspense` for code splitting at the route level in an application where each page individually wraps its content in a `<Layout>` component, the `Suspense` fallback must also be wrapped in the `<Layout>` component (e.g., `<Layout isStatic={true}>...`). Otherwise, during the loading state, the global navigation (header and footer) will disappear, causing a jarring user experience.
+**Action:** When implementing code splitting for top-level routes, always check if the application uses a layout wrapper inside the page components rather than around the router. If so, ensure the `Suspense` fallback mirrors this structure to maintain UI consistency during load times.
