@@ -1,0 +1,3 @@
+## 2026-09-17 - React Router Suspense Fallback in Custom Architecture
+**Learning:** In this application's architecture, page components individually render the `<Layout>` component rather than having a global `<Layout>` wrapper around the `<Routes>`. When implementing route-level boundaries (e.g., `<Suspense>` fallbacks), the fallback UI must also be wrapped in the `<Layout>` component (e.g., `<Layout isStatic={true}>...`) to prevent the header and footer from disappearing during the loading state.
+**Action:** Always inspect how layouts are structured in the current codebase before implementing wrapper components like Suspense or ErrorBoundaries to ensure consistent UI rendering.
