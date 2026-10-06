@@ -1,0 +1,3 @@
+## 2024-05-15 - React.lazy Code Splitting Route Boundaries
+**Learning:** In this application architecture where page components individually render `<Layout>`, `React.lazy()` chunking required wrapping `<Suspense>` in the `<Layout>` component (e.g., `<Layout isStatic={true}>...`) as well. Failing to do this causes the header/footer to abruptly disappear during chunk loading transitions.
+**Action:** When implementing code-splitting with `Suspense` fallbacks in an app without a persistent global layout wrapper, explicitly wrap the fallback UI in the site layout to prevent visual disruption during lazy loading.
