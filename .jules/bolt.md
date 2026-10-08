@@ -1,0 +1,3 @@
+## 2024-10-09 - Code Splitting Page Components
+**Learning:** React page components in this repository use named exports (e.g. `export const Home`). `React.lazy` requires a default export mapping, e.g. `React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })))`. Wrapping `<Suspense>` inside `<Router>` and outside `<Routes>` handles lazy loading properly while also providing a fallback that renders `<Layout>` to prevent header/footer flickers.
+**Action:** When implementing route-level code splitting, carefully check component exports and map them appropriately, while ensuring layout elements are preserved during the fallback state.
